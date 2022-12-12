@@ -1,0 +1,21 @@
+.container {
+    border: 1px solid red;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.flex_wrapper {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    position: relative !important;
+    overflow: hidden !important;
+    height: 100% !important;
+}
+
+.main {
+    flex-grow: 1;
+}

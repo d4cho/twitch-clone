@@ -13,7 +13,35 @@ export default function Home() {
                 <link rel='icon' href='/twitch-favicon.png' />
             </Head>
 
-            <main className={styles.main}>content</main>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
+            <h1>content</h1>
         </div>
     );
 }

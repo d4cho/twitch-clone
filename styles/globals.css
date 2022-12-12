@@ -61,6 +61,8 @@ h6 {
     isolation: isolate;
 }
 
+/* reset ends here */
+
 /* Color Themes */
 * {
     --color-off-white: #f2efe6;
