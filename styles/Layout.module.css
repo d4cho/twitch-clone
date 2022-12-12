@@ -8,6 +8,10 @@
     flex-direction: column;
 }
 
+.header {
+    z-index: 1000;
+}
+
 .flex_wrapper {
     display: flex !important;
     flex-wrap: nowrap !important;

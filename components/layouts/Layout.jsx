@@ -6,7 +6,7 @@ import TopBar from '../organisms/TopBar';
 const Layout = ({ children }) => {
     return (
         <div className={styles.container}>
-            <header>
+            <header className={styles.header}>
                 <TopBar />
             </header>
             <div className={styles.flex_wrapper}>

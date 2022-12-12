@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+import styles from '../../styles/SideBar.module.css';
 
 const SideBar = () => {
-    return <div>SideBar</div>;
+    const [isOpen, setIsOpen] = useState(true);
+
+    return (
+        <div
+            className={[styles.container, !isOpen && styles.collapsed].join(
+                ' '
+            )}
+        >
+            <button onClick={() => setIsOpen(!isOpen)}>resize</button>
+            <div>SideBar</div>
+        </div>
+    );
 };
 
 export default SideBar;

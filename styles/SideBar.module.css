@@ -1,0 +1,9 @@
+.container {
+    background-color: blueviolet;
+    width: 15rem;
+    height: 100%;
+}
+
+.collapsed {
+    width: 3rem;
+}
