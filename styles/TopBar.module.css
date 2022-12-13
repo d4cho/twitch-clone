@@ -1,4 +1,28 @@
 .container {
-    background-color: aqua;
+    background-color: var(--dark-nav-bg);
     height: 50px;
+    max-height: 50px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 0px 2px rgba(0, 0, 0, 0.9);
+}
+
+.wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    /* color: var(--color-off-white); */
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.left > div {
+    padding: 0 1rem;
 }

@@ -1,0 +1,13 @@
+.container {
+    font-size: var(--fontSize);
+    font-weight: 600;
+    color: var(--initialColor);
+
+    user-select: none;
+    cursor: pointer;
+}
+
+.container:hover {
+    color: var(--hoverColor);
+    text-decoration: var(--textDecoration);
+}

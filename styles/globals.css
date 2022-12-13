@@ -63,9 +63,17 @@ h6 {
 
 /* reset ends here */
 
+a {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+
 /* Color Themes */
 * {
-    --color-off-white: #f2efe6;
+    --color-purple: #bf94ff;
+    --color-purple-hover: #a970ff;
+    --color-off-white: #efeff1;
     --color-orange: #c38133;
-    --color-blue: #3c4cc7;
+    --dark-nav-bg: #18181b;
 }
