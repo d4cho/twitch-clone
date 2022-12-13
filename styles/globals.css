@@ -76,4 +76,5 @@ a {
     --color-off-white: #efeff1;
     --color-orange: #c38133;
     --dark-nav-bg: #18181b;
+    --icon-hover-bg: hsla(0, 0%, 100%, 0.13);
 }

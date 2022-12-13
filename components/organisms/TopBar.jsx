@@ -2,6 +2,7 @@ import React from 'react';
 import styles from '../../styles/TopBar.module.css';
 import HoverableText from '../atoms/HoverableText';
 import { FiMoreVertical } from 'react-icons/fi';
+import HoverableIcon from '../atoms/HoverableIcon';
 
 const TopBar = () => {
     return (
@@ -45,10 +46,16 @@ const TopBar = () => {
                         </a>
                     </div>
                     <div>
-                        <FiMoreVertical color='#efeff1' size={20} />
+                        <HoverableIcon
+                            icon={<FiMoreVertical color='#efeff1' size={22} />}
+                            toolTipText={'More'}
+                            toolTipPosition={'bottom'}
+                        />
                     </div>
                 </div>
-                <div>center</div>
+                <div>
+                    <input type='text' placeholder='need to make this' />
+                </div>
                 <div>right</div>
             </div>
         </nav>
