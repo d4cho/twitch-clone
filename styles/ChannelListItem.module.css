@@ -1,0 +1,65 @@
+.container {
+    width: 100%;
+    padding: 0.5rem 0.5rem;
+    cursor: pointer;
+}
+.container:hover {
+    background-color: var(--icon-hover-bg);
+}
+
+.flex {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+}
+
+.profile {
+    padding-right: 0.5rem;
+}
+
+.name_wrapper {
+    width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user_name {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.2;
+    color: var(--color-off-white);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.game_name {
+    font-size: 14px;
+    line-height: 1.2;
+    color: gray;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.status {
+    align-self: flex-start;
+    font-size: 14px;
+    color: var(--color-off-white);
+    display: flex;
+    align-items: center;
+}
+.status > div {
+    margin-right: 0.5rem;
+    background-color: red;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}

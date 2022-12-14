@@ -58,7 +58,11 @@ const TopBar = () => {
                     </div>
                 </div>
                 <div className={styles.center}>
-                    <input type='text' placeholder='need to make this' />
+                    <input
+                        style={{ width: 300 }}
+                        type='text'
+                        placeholder='get component from someone'
+                    />
                 </div>
                 <div className={styles.right}>
                     <div>

@@ -4,6 +4,7 @@ import HoverableIcon from '../atoms/HoverableIcon';
 import { BsArrowBarLeft } from 'react-icons/bs';
 import { BsArrowBarRight } from 'react-icons/bs';
 import { BsArrowDownUp } from 'react-icons/bs';
+import ChannelListItem from '../molecules/ChannelListItem';
 
 const SideBar = () => {
     const [isOpen, setIsOpen] = useState(true);
@@ -42,14 +43,31 @@ const SideBar = () => {
 
             {isOpen && (
                 <div className={styles.followed_channels_wrapper}>
-                    <div>Followed channels</div>
+                    <div className={styles.sidebar_heading}>
+                        Followed channels
+                    </div>
                     <BsArrowDownUp color={iconColor} size={16} />
                 </div>
             )}
 
             <div>
-                <div>recommended channels</div>
-                <div>icon</div>
+                <ChannelListItem isOpen={isOpen} />
+                <ChannelListItem isOpen={isOpen} />
+                <ChannelListItem isOpen={isOpen} />
+            </div>
+
+            {isOpen && (
+                <div className={styles.recommended_channels_wrapper}>
+                    <div className={styles.sidebar_heading}>
+                        recommended channels
+                    </div>
+                </div>
+            )}
+
+            <div>
+                <ChannelListItem isOpen={isOpen} />
+                <ChannelListItem isOpen={isOpen} />
+                <ChannelListItem isOpen={isOpen} />
             </div>
         </div>
     );

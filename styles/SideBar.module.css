@@ -34,12 +34,18 @@
     align-items: center;
     padding: 0.5rem 0.5rem;
 }
-.followed_channels_wrapper > div {
-    font-size: 1rem;
+.followed_channels_wrapper:hover {
+    background-color: var(--icon-hover-bg);
+}
+
+.sidebar_heading {
+    font-size: 0.85rem;
     color: var(--color-off-white);
     font-weight: bold;
     text-transform: uppercase;
 }
-.followed_channels_wrapper:hover {
-    background-color: var(--icon-hover-bg);
+
+.recommended_channels_wrapper {
+    width: 100%;
+    padding: 0.5rem 0.5rem;
 }

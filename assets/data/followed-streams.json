@@ -1,0 +1,22 @@
+{
+    "data": [
+        {
+            "id": "12345678901",
+            "user_id": "123456789",
+            "user_login": "metaphor",
+            "user_name": "Metaphor",
+            "game_id": "123456",
+            "game_name": "Call of Duty: Warzone",
+            "type": "live",
+            "title": "RANK 1 SOLOS PLAYER - MOST KILLS WORLD !video !wr !discord !skin !opgg",
+            "viewer_count": 1023,
+            "started_at": "2021-03-31T20:57:26Z",
+            "language": "en",
+            "thumbnail_url": "https://static-cdn.jtvnw.net/jtv_user_pictures/28164bdf-1f53-4a56-b43e-f0c647a5f41c-profile_image-70x70.png",
+            "tag_ids": ["6ea6bca4-4712-4ab9-a906-e3336a9d8039"]
+        }
+    ],
+    "pagination": {
+        "cursor": "eyJiIjp7IkN1cnNvciI6ImV5SnpJam8zT0RNMk5TNDBORFF4TlRjMU1UY3hOU3dpWkNJNlptRnNjMlVzSW5RaU9uUnlkV1Y5In0sImEiOnsiQ3Vyc29yIjoiZXlKeklqb3hOVGs0TkM0MU56RXhNekExTVRZNU1ESXNJbVFpT21aaGJITmxMQ0owSWpwMGNuVmxmUT09In19"
+    }
+}
