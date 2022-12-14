@@ -24,6 +24,7 @@
     border-radius: 6px;
     font-size: 14px;
     font-weight: bold;
+    white-space: nowrap;
 
     /* Position the tooltip text - see examples below! */
     position: absolute;

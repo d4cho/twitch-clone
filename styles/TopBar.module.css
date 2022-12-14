@@ -16,7 +16,8 @@
     /* color: var(--color-off-white); */
 }
 
-.left {
+.left,
+.right {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -25,4 +26,8 @@
 
 .left > div {
     padding: 0 1rem;
+}
+
+.right > div {
+    padding: 0 0.5rem;
 }

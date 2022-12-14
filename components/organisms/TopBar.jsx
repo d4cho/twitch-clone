@@ -1,8 +1,11 @@
 import React from 'react';
 import styles from '../../styles/TopBar.module.css';
 import HoverableText from '../atoms/HoverableText';
-import { FiMoreVertical } from 'react-icons/fi';
 import HoverableIcon from '../atoms/HoverableIcon';
+import { FiMoreVertical } from 'react-icons/fi';
+import { TbCrown } from 'react-icons/tb';
+import { AiOutlineInbox } from 'react-icons/ai';
+import { BiMessageAlt } from 'react-icons/bi';
 
 const TopBar = () => {
     return (
@@ -53,10 +56,36 @@ const TopBar = () => {
                         />
                     </div>
                 </div>
-                <div>
+                <div className={styles.center}>
                     <input type='text' placeholder='need to make this' />
                 </div>
-                <div>right</div>
+                <div className={styles.right}>
+                    <div>
+                        <HoverableIcon
+                            icon={<TbCrown color='#efeff1' size={22} />}
+                            toolTipText={'Prime Loot'}
+                            toolTipPosition={'bottom'}
+                        />
+                    </div>
+                    <div>
+                        <HoverableIcon
+                            icon={<AiOutlineInbox color='#efeff1' size={22} />}
+                            toolTipText={'Notifications'}
+                            toolTipPosition={'bottom'}
+                        />
+                    </div>
+                    <div>
+                        <HoverableIcon
+                            icon={<BiMessageAlt color='#efeff1' size={22} />}
+                            toolTipText={'Whispers'}
+                            toolTipPosition={'bottom'}
+                        />
+                    </div>
+                    <div>
+                        <button>Get Bits</button>
+                    </div>
+                    <div>profile</div>
+                </div>
             </div>
         </nav>
     );
