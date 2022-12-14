@@ -1,9 +1,45 @@
 .container {
-    background-color: blueviolet;
+    background-color: #1f1f23;
     width: 15rem;
     height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+    padding: 0.75rem 0rem;
 }
 
 .collapsed {
     width: 3rem;
+}
+
+.for_you_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rem 0.5rem;
+}
+.for_you {
+    font-size: 1.2rem;
+    color: var(--color-off-white);
+    font-weight: 700;
+}
+
+.followed_channels_wrapper {
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0.5rem;
+}
+.followed_channels_wrapper > div {
+    font-size: 1rem;
+    color: var(--color-off-white);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.followed_channels_wrapper:hover {
+    background-color: var(--icon-hover-bg);
 }
