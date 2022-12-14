@@ -1,0 +1,11 @@
+.container {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.container > img {
+    border-radius: 50%;
+    object-fit: contain;
+}

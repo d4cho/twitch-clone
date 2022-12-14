@@ -6,6 +6,7 @@ import { FiMoreVertical } from 'react-icons/fi';
 import { TbCrown } from 'react-icons/tb';
 import { AiOutlineInbox } from 'react-icons/ai';
 import { BiMessageAlt } from 'react-icons/bi';
+import ProfileIcon from '../atoms/ProfileIcon';
 
 const TopBar = () => {
     return (
@@ -84,7 +85,9 @@ const TopBar = () => {
                     <div>
                         <button>Get Bits</button>
                     </div>
-                    <div>profile</div>
+                    <div>
+                        <ProfileIcon image={null} />
+                    </div>
                 </div>
             </div>
         </nav>
