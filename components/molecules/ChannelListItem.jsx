@@ -14,7 +14,11 @@ const ChannelListItem = ({ isOpen, streamData }) => {
     }
 
     return (
-        <div className={styles.container}>
+        <div className={[styles.container, styles.tooltip].join(' ')}>
+            <div className={styles.tooltip_text}>
+                {type === 'live' ? title : 'See all recent videos'}
+            </div>
+
             <div className={styles.flex}>
                 <div className={styles.info}>
                     <div className={styles.profile}>

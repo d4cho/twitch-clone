@@ -63,3 +63,32 @@
     height: 8px;
     border-radius: 50%;
 }
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+}
+
+/* Tooltip text */
+.tooltip .tooltip_text {
+    visibility: hidden;
+    width: fit-content;
+    max-width: 200px;
+    background-color: #000;
+    color: var(--color-off-white);
+    padding: 5px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+
+    /* Position the tooltip text - see examples below! */
+    position: fixed;
+    /* left position determined by width of sidebar */
+    left: 16rem;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltip_text {
+    visibility: visible;
+}
