@@ -7,6 +7,7 @@ const HoverableText = ({
     hoverEffects,
     initialColor,
     hoverColor,
+    handleOnClick,
 }) => {
     const { changeColor, addUnderline } = hoverEffects;
 
@@ -19,6 +20,7 @@ const HoverableText = ({
                 '--hoverColor': changeColor ? hoverColor : initialColor,
                 '--textDecoration': addUnderline ? 'underline' : 'none',
             }}
+            onClick={handleOnClick}
         >
             {text}
         </div>

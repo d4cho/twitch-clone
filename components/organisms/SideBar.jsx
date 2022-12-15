@@ -8,9 +8,12 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { SlCamrecorder } from 'react-icons/sl';
 import ChannelListItem from '../molecules/ChannelListItem';
 import followedStreamsData from '../../assets/data/followed-streams.json';
+import HoverableText from '../atoms/HoverableText';
 
 const SideBar = () => {
     const [isOpen, setIsOpen] = useState(true);
+    const [isShowMoreFollowed, setIsShowMoreFollowed] = useState(false);
+    const [isShowMoreRecommended, setIsShowMoreRecommended] = useState(false);
 
     const iconColor = '#efeff1';
     const iconSize = 20;
@@ -64,17 +67,40 @@ const SideBar = () => {
             )}
 
             <div>
-                {followedStreamsData.data.map((streamData) => {
-                    return (
-                        <React.Fragment key={streamData.id}>
-                            <ChannelListItem
-                                isOpen={isOpen}
-                                streamData={streamData}
-                            />
-                        </React.Fragment>
-                    );
+                {followedStreamsData.data.map((streamData, idx) => {
+                    let indexToShow = isShowMoreFollowed
+                        ? followedStreamsData.data.length - 1
+                        : 4;
+                    if (idx <= indexToShow) {
+                        return (
+                            <React.Fragment key={streamData.id}>
+                                <ChannelListItem
+                                    isOpen={isOpen}
+                                    streamData={streamData}
+                                />
+                            </React.Fragment>
+                        );
+                    }
                 })}
             </div>
+
+            {isOpen && (
+                <div className={styles.show_more}>
+                    <HoverableText
+                        text={isShowMoreFollowed ? 'Show less' : 'Show more'}
+                        fontSize={'13px'}
+                        hoverEffects={{
+                            changeColor: true,
+                            addUnderline: true,
+                        }}
+                        initialColor={'#bf94ff'}
+                        hoverColor={'#a970ff'}
+                        handleOnClick={() =>
+                            setIsShowMoreFollowed(!isShowMoreFollowed)
+                        }
+                    />
+                </div>
+            )}
 
             {isOpen ? (
                 <div className={styles.recommended_channels_wrapper}>
@@ -95,17 +121,40 @@ const SideBar = () => {
             )}
 
             <div>
-                {followedStreamsData.data.map((streamData) => {
-                    return (
-                        <React.Fragment key={streamData.id}>
-                            <ChannelListItem
-                                isOpen={isOpen}
-                                streamData={streamData}
-                            />
-                        </React.Fragment>
-                    );
+                {followedStreamsData.data.map((streamData, idx) => {
+                    let indexToShow = setIsShowMoreRecommended
+                        ? followedStreamsData.data.length - 1
+                        : 6;
+                    if (idx <= indexToShow) {
+                        return (
+                            <React.Fragment key={streamData.id}>
+                                <ChannelListItem
+                                    isOpen={isOpen}
+                                    streamData={streamData}
+                                />
+                            </React.Fragment>
+                        );
+                    }
                 })}
             </div>
+
+            {isOpen && (
+                <div className={styles.show_more}>
+                    <HoverableText
+                        text={isShowMoreRecommended ? 'Show less' : 'Show more'}
+                        fontSize={'13px'}
+                        hoverEffects={{
+                            changeColor: true,
+                            addUnderline: true,
+                        }}
+                        initialColor={'#bf94ff'}
+                        hoverColor={'#a970ff'}
+                        handleOnClick={() =>
+                            setIsShowMoreRecommended(!isShowMoreRecommended)
+                        }
+                    />
+                </div>
+            )}
         </div>
     );
 };
