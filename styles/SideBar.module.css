@@ -26,6 +26,13 @@
     font-weight: 700;
 }
 
+.collapsed_icon_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .followed_channels_wrapper {
     cursor: pointer;
     width: 100%;
