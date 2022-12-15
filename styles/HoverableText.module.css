@@ -1,6 +1,6 @@
 .container {
     font-size: var(--fontSize);
-    font-weight: 600;
+    font-weight: var(--fontWeight);
     color: var(--initialColor);
 
     user-select: none;

@@ -4,6 +4,7 @@ import styles from '../../styles/HoverableText.module.css';
 const HoverableText = ({
     text,
     fontSize,
+    fontWeight,
     hoverEffects,
     initialColor,
     hoverColor,
@@ -16,6 +17,7 @@ const HoverableText = ({
             className={styles.container}
             style={{
                 '--fontSize': fontSize,
+                '--fontWeight': fontWeight ? fontWeight : 600,
                 '--initialColor': initialColor,
                 '--hoverColor': changeColor ? hoverColor : initialColor,
                 '--textDecoration': addUnderline ? 'underline' : 'none',
