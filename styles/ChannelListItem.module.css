@@ -56,7 +56,7 @@
     display: flex;
     align-items: center;
 }
-.status > div {
+.live_dot {
     margin-right: 0.5rem;
     background-color: red;
     width: 8px;

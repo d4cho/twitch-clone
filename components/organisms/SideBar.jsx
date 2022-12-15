@@ -5,6 +5,7 @@ import { BsArrowBarLeft } from 'react-icons/bs';
 import { BsArrowBarRight } from 'react-icons/bs';
 import { BsArrowDownUp } from 'react-icons/bs';
 import ChannelListItem from '../molecules/ChannelListItem';
+import followedStreamsData from '../../assets/data/followed-streams.json';
 
 const SideBar = () => {
     const [isOpen, setIsOpen] = useState(true);
@@ -51,9 +52,16 @@ const SideBar = () => {
             )}
 
             <div>
-                <ChannelListItem isOpen={isOpen} />
-                <ChannelListItem isOpen={isOpen} />
-                <ChannelListItem isOpen={isOpen} />
+                {followedStreamsData.data.map((streamData) => {
+                    return (
+                        <React.Fragment key={streamData.id}>
+                            <ChannelListItem
+                                isOpen={isOpen}
+                                streamData={streamData}
+                            />
+                        </React.Fragment>
+                    );
+                })}
             </div>
 
             {isOpen && (
@@ -65,9 +73,16 @@ const SideBar = () => {
             )}
 
             <div>
-                <ChannelListItem isOpen={isOpen} />
-                <ChannelListItem isOpen={isOpen} />
-                <ChannelListItem isOpen={isOpen} />
+                {followedStreamsData.data.map((streamData) => {
+                    return (
+                        <React.Fragment key={streamData.id}>
+                            <ChannelListItem
+                                isOpen={isOpen}
+                                streamData={streamData}
+                            />
+                        </React.Fragment>
+                    );
+                })}
             </div>
         </div>
     );

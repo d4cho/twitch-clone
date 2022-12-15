@@ -2,7 +2,9 @@ import React from 'react';
 import styles from '../../styles/ChannelListItem.module.css';
 import ProfileIcon from '../atoms/ProfileIcon';
 
-const ChannelListItem = ({ isOpen }) => {
+const ChannelListItem = ({ isOpen, streamData }) => {
+    const { user_name, game_name, type, title, viewer_count } = streamData;
+
     if (!isOpen) {
         return (
             <div className={styles.container}>
@@ -19,16 +21,18 @@ const ChannelListItem = ({ isOpen }) => {
                         <ProfileIcon image={null} />
                     </div>
                     <div className={styles.name_wrapper}>
-                        <div className={styles.user_name}>Metaphor</div>
-                        <div className={styles.game_name}>
-                            Call of Duty: Warzone eeeee
-                        </div>
+                        <div className={styles.user_name}>{user_name}</div>
+                        <div className={styles.game_name}>{game_name}</div>
                     </div>
                 </div>
-                <div className={styles.status}>
-                    <div></div>
-                    326
-                </div>
+                {type === 'live' ? (
+                    <div className={styles.status}>
+                        <div className={styles.live_dot} />
+                        {viewer_count}
+                    </div>
+                ) : (
+                    <div className={styles.status}>Offline</div>
+                )}
             </div>
         </div>
     );
