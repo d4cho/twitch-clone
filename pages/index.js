@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import HomeDisplaySection from '../components/organisms/HomeDisplaySection';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
@@ -13,35 +14,40 @@ export default function Home() {
                 <link rel='icon' href='/twitch-favicon.png' />
             </Head>
 
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
-            <h1>content</h1>
+            <div className={styles.carousel_wrapper}>
+                <h1>video carousel goes here</h1>
+            </div>
+
+            <div className={styles.main_content}>
+                <section>
+                    <HomeDisplaySection
+                        linkText={'Live channels'}
+                        headerText={`we think you'll like`}
+                        showMore
+                    />
+                </section>
+                <section>
+                    <HomeDisplaySection
+                        linkText={'Categories'}
+                        headerText={`we think you'll like`}
+                    />
+                </section>
+                <section>
+                    <HomeDisplaySection headerText={`What's hot`} showMore />
+                </section>
+                <section>
+                    <HomeDisplaySection
+                        headerText={`Recently Released Games`}
+                        showMore
+                    />
+                </section>
+                <section>
+                    <HomeDisplaySection
+                        headerText={`Recently Released Games`}
+                        showMore
+                    />
+                </section>
+            </div>
         </div>
     );
 }
