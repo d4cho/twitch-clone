@@ -13,12 +13,32 @@ const ChannelListItem = ({ isOpen, streamData }) => {
         );
     }
 
+    // offline channel item
+    if (type !== 'live') {
+        return (
+            <div className={[styles.container, styles.tooltip].join(' ')}>
+                <div className={styles.tooltip_text}>
+                    {'See all recent videos'}
+                </div>
+                <div className={styles.flex}>
+                    <div className={styles.info}>
+                        <div className={styles.profile}>
+                            <ProfileIcon image={null} />
+                        </div>
+                        <div className={styles.name_wrapper}>
+                            <div className={styles.user_name}>{user_name}</div>
+                        </div>
+                    </div>
+                    <div className={styles.status}>Offline</div>
+                </div>
+            </div>
+        );
+    }
+
+    // online channel item
     return (
         <div className={[styles.container, styles.tooltip].join(' ')}>
-            <div className={styles.tooltip_text}>
-                {type === 'live' ? title : 'See all recent videos'}
-            </div>
-
+            <div className={styles.tooltip_text}>{title}</div>
             <div className={styles.flex}>
                 <div className={styles.info}>
                     <div className={styles.profile}>
@@ -26,17 +46,14 @@ const ChannelListItem = ({ isOpen, streamData }) => {
                     </div>
                     <div className={styles.name_wrapper}>
                         <div className={styles.user_name}>{user_name}</div>
+
                         <div className={styles.game_name}>{game_name}</div>
                     </div>
                 </div>
-                {type === 'live' ? (
-                    <div className={styles.status}>
-                        <div className={styles.live_dot} />
-                        {viewer_count}
-                    </div>
-                ) : (
-                    <div className={styles.status}>Offline</div>
-                )}
+                <div className={styles.status}>
+                    <div className={styles.live_dot} />
+                    {viewer_count}
+                </div>
             </div>
         </div>
     );
