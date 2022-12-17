@@ -11,14 +11,14 @@ const HomeDisplaySection = ({ headerText, showMore }) => {
             <div className={styles.content_wrapper}>content</div>
             {showMore && (
                 <div className={styles.show_more_wrapper}>
-                    <div className={styles.hor_line}></div>
+                    <div className={styles.hor_line} />
                     <div className={styles.button_wrapper}>
                         <button className={styles.button}>
                             <span>Show more</span>
                             <FiChevronDown size={20} />
                         </button>
                     </div>
-                    <div className={styles.hor_line}></div>
+                    <div className={styles.hor_line} />
                 </div>
             )}
         </div>

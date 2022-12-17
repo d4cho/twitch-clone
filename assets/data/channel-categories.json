@@ -1,0 +1,43 @@
+{
+    "data": [
+        {
+            "id": "00001",
+            "name": "Diablo III",
+            "box_art_url": "https://static-cdn.jtvnw.net/ttv-boxart/313558_IGDB-188x250.jpg",
+            "igdb_id": "0001"
+        },
+        {
+            "id": "00002",
+            "name": "Call of Duty: Modern Warfare II",
+            "box_art_url": "https://static-cdn.jtvnw.net/ttv-boxart/1678052513_IGDB-188x250.jpg",
+            "igdb_id": "0002"
+        },
+        {
+            "id": "00003",
+            "name": "Call of Duty: Warzone",
+            "box_art_url": "https://static-cdn.jtvnw.net/ttv-boxart/512710-188x250.jpg",
+            "igdb_id": "0003"
+        },
+        {
+            "id": "00004",
+            "name": "Overwatch 2",
+            "box_art_url": "https://static-cdn.jtvnw.net/ttv-boxart/515025-188x250.jpg",
+            "igdb_id": "0004"
+        },
+        {
+            "id": "00005",
+            "name": "Fortnite",
+            "box_art_url": "https://static-cdn.jtvnw.net/ttv-boxart/33214-188x250.jpg",
+            "igdb_id": "0005"
+        },
+        {
+            "id": "00006",
+            "name": "League of Legends",
+            "box_art_url": "https://static-cdn.jtvnw.net/ttv-boxart/21779-188x250.jpg",
+            "igdb_id": "0006"
+        }
+    ],
+    "pagination": {
+        "cursor": "eyJiIjpudWxsLCJhIjp7IkN"
+    }
+}
