@@ -24,3 +24,19 @@
     margin: 1rem 0;
     width: 100%;
 }
+
+.section_header {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    color: var(--color-off-white);
+}
+
+.pad_left {
+    padding-left: 0.25rem;
+}
+
+.pad_right {
+    padding-right: 0.25rem;
+}

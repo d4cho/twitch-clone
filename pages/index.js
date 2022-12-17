@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import HoverableText from '../components/atoms/HoverableText';
 import HomeDisplaySection from '../components/organisms/HomeDisplaySection';
 import styles from '../styles/Home.module.css';
 
@@ -21,29 +22,105 @@ export default function Home() {
             <div className={styles.main_content}>
                 <section>
                     <HomeDisplaySection
-                        linkText={'Live channels'}
-                        headerText={`we think you'll like`}
+                        headerText={
+                            <div className={styles.section_header}>
+                                <HoverableText
+                                    text={'Live channels'}
+                                    fontSize={'18px'}
+                                    fontWeight={'bold'}
+                                    hoverEffects={{
+                                        changeColor: true,
+                                        addUnderline: true,
+                                    }}
+                                    initialColor={'#bf94ff'}
+                                    hoverColor={'#a970ff'}
+                                    handleOnClick={() => {}}
+                                />
+                                <div
+                                    className={styles.pad_left}
+                                >{`we think you'll like`}</div>
+                            </div>
+                        }
                         showMore
                     />
                 </section>
                 <section>
                     <HomeDisplaySection
-                        linkText={'Categories'}
-                        headerText={`we think you'll like`}
+                        headerText={
+                            <div className={styles.section_header}>
+                                <HoverableText
+                                    text={'Categories'}
+                                    fontSize={'18px'}
+                                    fontWeight={'bold'}
+                                    hoverEffects={{
+                                        changeColor: true,
+                                        addUnderline: true,
+                                    }}
+                                    initialColor={'#bf94ff'}
+                                    hoverColor={'#a970ff'}
+                                    handleOnClick={() => {}}
+                                />
+                                <div
+                                    className={styles.pad_left}
+                                >{`we think you'll like`}</div>
+                            </div>
+                        }
                     />
                 </section>
                 <section>
-                    <HomeDisplaySection headerText={`What's hot`} showMore />
-                </section>
-                <section>
                     <HomeDisplaySection
-                        headerText={`Recently Released Games`}
+                        headerText={
+                            <div className={styles.section_header}>
+                                <div>{`What's hot`}</div>
+                            </div>
+                        }
                         showMore
                     />
                 </section>
                 <section>
                     <HomeDisplaySection
-                        headerText={`Recently Released Games`}
+                        headerText={
+                            <div className={styles.section_header}>
+                                <div>{`Recently Released Games`}</div>
+                            </div>
+                        }
+                        showMore
+                    />
+                </section>
+                <section>
+                    <HomeDisplaySection
+                        headerText={
+                            <div className={styles.section_header}>
+                                <div>{`Recently Released Games`}</div>
+                            </div>
+                        }
+                        showMore
+                    />
+                </section>
+                <section>
+                    <HomeDisplaySection
+                        headerText={
+                            <div className={styles.section_header}>
+                                <div
+                                    className={styles.pad_right}
+                                >{`Recommended`}</div>
+                                <HoverableText
+                                    text={'League of Legends'}
+                                    fontSize={'18px'}
+                                    fontWeight={'bold'}
+                                    hoverEffects={{
+                                        changeColor: true,
+                                        addUnderline: true,
+                                    }}
+                                    initialColor={'#bf94ff'}
+                                    hoverColor={'#a970ff'}
+                                    handleOnClick={() => {}}
+                                />
+                                <div
+                                    className={styles.pad_left}
+                                >{`channels`}</div>
+                            </div>
+                        }
                         showMore
                     />
                 </section>

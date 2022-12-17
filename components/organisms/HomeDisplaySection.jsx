@@ -1,33 +1,12 @@
 import React from 'react';
 import styles from '../../styles/HomeDisplaySection.module.css';
-import HoverableText from '../atoms/HoverableText';
 import { FiChevronDown } from 'react-icons/fi';
 
-const HomeDisplaySection = ({ linkText, headerText, showMore }) => {
+const HomeDisplaySection = ({ headerText, showMore }) => {
     return (
         <div className={styles.container}>
             <div className={styles.header_wrapper}>
-                <h2>
-                    {linkText && (
-                        <span>
-                            <HoverableText
-                                text={linkText}
-                                fontSize={'18px'}
-                                fontWeight={'bold'}
-                                hoverEffects={{
-                                    changeColor: true,
-                                    addUnderline: true,
-                                }}
-                                initialColor={'#bf94ff'}
-                                hoverColor={'#a970ff'}
-                                handleOnClick={() =>
-                                    setIsShowMoreFollowed(!isShowMoreFollowed)
-                                }
-                            />
-                        </span>
-                    )}
-                    {headerText}
-                </h2>
+                <h2>{headerText}</h2>
             </div>
             <div className={styles.content_wrapper}>content</div>
             {showMore && (
