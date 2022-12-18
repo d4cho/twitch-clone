@@ -6,13 +6,29 @@ import HoverableText from '../atoms/HoverableText';
 import Chip from '../atoms/Chip';
 import { nFormatter } from '../../utils/functions';
 
-const DisplayCard = ({ gameData }) => {
+const DisplayCard = ({ gameData, bgColor }) => {
     const { name, box_art_url, viewers, tags } = gameData;
 
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
-                <img className={styles.image} src={box_art_url} alt={name} />
+                <div
+                    className={styles.image_wrapper}
+                    style={{
+                        '--bgColor': bgColor,
+                    }}
+                >
+                    <div className={styles.bg_top_left}></div>
+                    <div className={styles.bg_bottom_right}></div>
+                    <div className={styles.bg_left}></div>
+                    <div className={styles.bg_bottom}></div>
+                    <img
+                        className={styles.image}
+                        src={box_art_url}
+                        alt={name}
+                    />
+                </div>
+
                 <div className={styles.name_wrapper}>
                     <div className={styles.name}>
                         <HoverableText

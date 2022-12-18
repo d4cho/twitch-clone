@@ -3,6 +3,7 @@ import styles from '../../styles/HomeDisplaySection.module.css';
 import { FiChevronDown } from 'react-icons/fi';
 import DisplayCard from '../molecules/DisplayCard';
 import categoryData from '../../assets/data/channel-categories.json';
+import { generateHexCode } from '../../utils/functions';
 
 const HomeDisplaySection = ({ headerText, showMore }) => {
     return (
@@ -12,9 +13,14 @@ const HomeDisplaySection = ({ headerText, showMore }) => {
             </div>
             <div className={styles.content_wrapper}>
                 {categoryData.data.map((gameData) => {
+                    let bgColor = generateHexCode();
+
                     return (
                         <React.Fragment key={gameData.id}>
-                            <DisplayCard gameData={gameData} />
+                            <DisplayCard
+                                gameData={gameData}
+                                bgColor={bgColor}
+                            />
                         </React.Fragment>
                     );
                 })}

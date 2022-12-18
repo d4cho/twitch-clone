@@ -19,3 +19,14 @@ export function nFormatter(num, digits) {
         ? (num / item.value).toFixed(digits).replace(rx, '$1') + item.symbol
         : '0';
 }
+
+export function generateHexCode() {
+    let hexCode = '#';
+    const hexChars = '0123456789abcdef';
+
+    for (let i = 0; i < 6; i++) {
+        hexCode += hexChars[Math.floor(Math.random() * 16)];
+    }
+
+    return hexCode;
+}
