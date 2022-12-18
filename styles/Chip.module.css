@@ -1,0 +1,14 @@
+.container {
+    font-size: 12px;
+    font-weight: bold;
+    color: #ffffffb3;
+    background-color: hsla(0, 0%, 100%, 0.08);
+    padding: 0 0.8rem;
+    border-radius: 9000px;
+    margin: 0 0.5rem 0.5rem 0;
+    cursor: pointer;
+}
+
+.container:hover {
+    background-color: var(--icon-hover-bg);
+}

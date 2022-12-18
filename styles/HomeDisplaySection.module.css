@@ -9,7 +9,8 @@
 
 /* content */
 .content_wrapper {
-    color: var(--color-off-white);
+    display: flex;
+    margin: 0px -0.5rem;
 }
 
 /* show more */

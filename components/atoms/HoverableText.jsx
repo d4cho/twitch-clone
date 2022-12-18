@@ -17,7 +17,7 @@ const HoverableText = ({
             className={styles.container}
             style={{
                 '--fontSize': fontSize,
-                '--fontWeight': fontWeight ? fontWeight : 600,
+                '--fontWeight': fontWeight ? fontWeight : '600',
                 '--initialColor': initialColor,
                 '--hoverColor': changeColor ? hoverColor : initialColor,
                 '--textDecoration': addUnderline ? 'underline' : 'none',
