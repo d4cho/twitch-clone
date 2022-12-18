@@ -4,6 +4,7 @@ import { SlOptionsVertical } from 'react-icons/sl';
 import HoverableIcon from '../atoms/HoverableIcon';
 import HoverableText from '../atoms/HoverableText';
 import Chip from '../atoms/Chip';
+import { nFormatter } from '../../utils/functions';
 
 const DisplayCard = ({ gameData }) => {
     const { name, box_art_url, viewers, tags } = gameData;
@@ -34,7 +35,7 @@ const DisplayCard = ({ gameData }) => {
                     />
                 </div>
                 <HoverableText
-                    text={`${viewers} viewers`}
+                    text={`${nFormatter(viewers, 1)} viewers`}
                     fontSize={'13px'}
                     hoverEffects={{
                         changeColor: true,
