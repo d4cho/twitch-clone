@@ -10,7 +10,7 @@
 /* content */
 .content_wrapper {
     display: flex;
-    margin: 0px -0.5rem;
+    margin: 0px -0.5rem 1rem;
 }
 
 /* show more */

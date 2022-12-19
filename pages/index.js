@@ -2,8 +2,41 @@ import Head from 'next/head';
 import HoverableText from '../components/atoms/HoverableText';
 import HomeDisplaySection from '../components/organisms/HomeDisplaySection';
 import styles from '../styles/Home.module.css';
+import categoryData from '../assets/data/channel-categories.json';
+// import liveStreamsData from '../assets/data/live-streams.json';
 
-export default function Home() {
+// export const getStaticPaths = async () => {
+//     const res = await fetch('https://jsonplaceholder.typicode.com/users');
+//     const data = await res.json();
+
+//     const paths = data.map((user) => {
+//         return {
+//             params: {
+//                 id: user.id.toString(),
+//             },
+//         };
+//     });
+
+//     return {
+//         paths: paths,
+//         fallback: false,
+//     };
+// };
+
+export const getStaticProps = async (context) => {
+    const res = await fetch(`http://localhost:3000/all-streams`);
+    const data = await res.json();
+
+    return {
+        props: {
+            data: data,
+        },
+    };
+};
+
+export default function Home({ data }) {
+    console.log(data);
+
     return (
         <div className={styles.container}>
             <Head>
@@ -22,6 +55,9 @@ export default function Home() {
             <div className={styles.main_content}>
                 <section>
                     <HomeDisplaySection
+                        contentData={data}
+                        perLine={3}
+                        type={'stream'}
                         headerText={
                             <div className={styles.section_header}>
                                 <HoverableText
@@ -46,6 +82,9 @@ export default function Home() {
                 </section>
                 <section>
                     <HomeDisplaySection
+                        contentData={categoryData}
+                        perLine={6}
+                        type={'game'}
                         headerText={
                             <div className={styles.section_header}>
                                 <HoverableText
@@ -79,12 +118,14 @@ export default function Home() {
                 </section>
                 <section>
                     <HomeDisplaySection
+                        contentData={categoryData}
+                        perLine={6}
+                        type={'game'}
                         headerText={
                             <div className={styles.section_header}>
                                 <div>{`Recently Released Games`}</div>
                             </div>
                         }
-                        showMore
                     />
                 </section>
                 <section>

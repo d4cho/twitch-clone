@@ -5,7 +5,7 @@
             "name": "Diablo III",
             "box_art_url": "https://static-cdn.jtvnw.net/ttv-boxart/313558_IGDB-188x250.jpg",
             "igdb_id": "0001",
-            "viewers": 917,
+            "viewer_count": 917,
             "tags": ["RPG", "Action", "Horror"]
         },
         {
@@ -13,7 +13,7 @@
             "name": "Call of Duty: Modern Warfare II",
             "box_art_url": "https://static-cdn.jtvnw.net/ttv-boxart/1678052513_IGDB-188x250.jpg",
             "igdb_id": "0002",
-            "viewers": 151000,
+            "viewer_count": 151000,
             "tags": ["Shooter", "Action"]
         },
         {
@@ -21,7 +21,7 @@
             "name": "Call of Duty: Warzone",
             "box_art_url": "https://static-cdn.jtvnw.net/ttv-boxart/512710-188x250.jpg",
             "igdb_id": "0003",
-            "viewers": 68000,
+            "viewer_count": 68000,
             "tags": ["FPS", "Shooter"]
         },
         {
@@ -29,7 +29,7 @@
             "name": "Overwatch 2",
             "box_art_url": "https://static-cdn.jtvnw.net/ttv-boxart/515025-188x250.jpg",
             "igdb_id": "0004",
-            "viewers": 74000,
+            "viewer_count": 74000,
             "tags": ["FPS", "Shooter"]
         },
         {
@@ -37,7 +37,7 @@
             "name": "Fortnite",
             "box_art_url": "https://static-cdn.jtvnw.net/ttv-boxart/33214-188x250.jpg",
             "igdb_id": "0005",
-            "viewers": 88200,
+            "viewer_count": 88200,
             "tags": ["Shooter", "Action"]
         },
         {
@@ -45,7 +45,7 @@
             "name": "League of Legends",
             "box_art_url": "https://static-cdn.jtvnw.net/ttv-boxart/21779-188x250.jpg",
             "igdb_id": "0006",
-            "viewers": 96500,
+            "viewer_count": 96500,
             "tags": ["MOBA", "Action", "RPG"]
         }
     ],

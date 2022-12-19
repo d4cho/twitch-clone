@@ -1,13 +1,13 @@
 import React from 'react';
-import styles from '../../styles/DisplayCard.module.css';
+import styles from '../../styles/GameCard.module.css';
 import { SlOptionsVertical } from 'react-icons/sl';
 import HoverableIcon from '../atoms/HoverableIcon';
 import HoverableText from '../atoms/HoverableText';
 import Chip from '../atoms/Chip';
 import { nFormatter } from '../../utils/functions';
 
-const DisplayCard = ({ gameData, bgColor }) => {
-    const { name, box_art_url, viewers, tags } = gameData;
+const GameCard = ({ cardData, bgColor }) => {
+    const { name, box_art_url, viewer_count, tags } = cardData;
 
     return (
         <div className={styles.container}>
@@ -51,7 +51,7 @@ const DisplayCard = ({ gameData, bgColor }) => {
                     />
                 </div>
                 <HoverableText
-                    text={`${nFormatter(viewers, 1)} viewers`}
+                    text={`${nFormatter(viewer_count, 1)} viewers`}
                     fontSize={'13px'}
                     hoverEffects={{
                         changeColor: true,
@@ -62,17 +62,18 @@ const DisplayCard = ({ gameData, bgColor }) => {
                     handleOnClick={() => {}}
                 />
                 <div className={styles.tags_wrapper}>
-                    {tags.map((tag, idx) => {
-                        return (
-                            <React.Fragment key={idx}>
-                                <Chip chipText={tag} />
-                            </React.Fragment>
-                        );
-                    })}
+                    {tags &&
+                        tags.map((tag, idx) => {
+                            return (
+                                <React.Fragment key={idx}>
+                                    <Chip chipText={tag} />
+                                </React.Fragment>
+                            );
+                        })}
                 </div>
             </div>
         </div>
     );
 };
 
-export default DisplayCard;
+export default GameCard;
