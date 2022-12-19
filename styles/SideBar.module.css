@@ -1,6 +1,6 @@
 .container {
     background-color: #1f1f23;
-    width: 15rem;
+    /* width: 15rem; */
     height: 100%;
 
     display: flex;
@@ -9,10 +9,17 @@
     padding: 0.75rem 0rem;
 
     overflow-y: scroll;
+
+    /* these properties allows for overflow-y scroll and overflow-x visible behavior hacky!*/
+    margin-right: -200px; /* hacky! */
+    padding-right: 200px; /* hacky! */
 }
 
 .collapsed {
-    width: 3rem;
+    /* width: 3rem;
+
+    margin-right: 0;
+    padding-right: 0; */
 }
 
 .for_you_wrapper {
