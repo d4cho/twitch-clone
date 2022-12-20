@@ -1,0 +1,24 @@
+{
+    "data": [
+        {
+            "title": "Games",
+            "imageUrl": "https://static.twitchcdn.net/assets/gaming-e9019587744b56b11b43.svg"
+        },
+        {
+            "title": "IRL",
+            "imageUrl": "https://static.twitchcdn.net/assets/irl-baa32e8e64a6974282c0.svg"
+        },
+        {
+            "title": "Music",
+            "imageUrl": "https://static.twitchcdn.net/assets/music-5fb4595a30d04d991e24.svg"
+        },
+        {
+            "title": "Esports",
+            "imageUrl": "https://static.twitchcdn.net/assets/esports-7a078acca57531d11e29.svg"
+        },
+        {
+            "title": "Creative",
+            "imageUrl": "https://static.twitchcdn.net/assets/creative-6423fb5fbcf31fadee38.svg"
+        }
+    ]
+}

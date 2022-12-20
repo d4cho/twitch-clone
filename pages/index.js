@@ -3,6 +3,7 @@ import HoverableText from '../components/atoms/HoverableText';
 import HomeDisplaySection from '../components/organisms/HomeDisplaySection';
 import styles from '../styles/Home.module.css';
 import categoryData from '../assets/data/channel-categories.json';
+import NavBar from '../components/organisms/NavBar';
 // import liveStreamsData from '../assets/data/live-streams.json';
 
 // export const getStaticPaths = async () => {
@@ -151,6 +152,9 @@ export default function Home({
                             </div>
                         }
                     />
+                </section>
+                <section className={styles.navbar_section}>
+                    <NavBar />
                 </section>
                 <section>
                     <HomeDisplaySection

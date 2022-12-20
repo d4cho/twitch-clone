@@ -39,3 +39,7 @@
 .pad_right {
     padding-right: 0.25rem;
 }
+
+.navbar_section {
+    margin: 3rem 0 !important;
+}
