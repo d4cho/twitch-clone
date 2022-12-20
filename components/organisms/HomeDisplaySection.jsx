@@ -71,9 +71,9 @@ const HomeDisplaySection = ({
                         })}
                 </div>
             )}
-            {showMore && (
-                <div className={styles.show_more_wrapper}>
-                    <div className={styles.hor_line} />
+            <div className={styles.show_more_wrapper}>
+                <div className={styles.hor_line} />
+                {showMore && (
                     <div className={styles.button_wrapper}>
                         <button
                             className={styles.button}
@@ -89,9 +89,9 @@ const HomeDisplaySection = ({
                             )}
                         </button>
                     </div>
-                    <div className={styles.hor_line} />
-                </div>
-            )}
+                )}
+                <div className={styles.hor_line} />
+            </div>
         </div>
     );
 };
