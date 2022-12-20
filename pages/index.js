@@ -35,8 +35,6 @@ export const getStaticProps = async (context) => {
 };
 
 export default function Home({ data }) {
-    console.log(data);
-
     return (
         <div className={styles.container}>
             <Head>

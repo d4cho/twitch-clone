@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../../styles/StreamCard.module.css';
 import { SlOptionsVertical } from 'react-icons/sl';
 import HoverableIcon from '../atoms/HoverableIcon';
@@ -8,12 +8,29 @@ import { nFormatter } from '../../utils/functions';
 import ProfileIcon from '../atoms/ProfileIcon';
 
 const StreamCard = ({ cardData, bgColor }) => {
-    const { title, thumbnail_url, user_name, game_name, viewer_count, tags } =
-        cardData;
+    const {
+        user_id,
+        title,
+        thumbnail_url,
+        user_name,
+        game_name,
+        viewer_count,
+        tags,
+    } = cardData;
 
-    let sizeAdjustedThumbnailUrl = thumbnail_url
+    const sizeAdjustedThumbnailUrl = thumbnail_url
         .replace('{width}', '440')
         .replace('{height}', '248');
+
+    const [avatarUrl, setAvatarUrl] = useState('');
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/user/${user_id}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setAvatarUrl(data.data[0]['profile_image_url']);
+            });
+    }, []);
 
     return (
         <div className={styles.container}>
@@ -46,7 +63,7 @@ const StreamCard = ({ cardData, bgColor }) => {
 
                 <div className={styles.info_wrapper}>
                     <div className={styles.avatar}>
-                        <ProfileIcon />
+                        <ProfileIcon imageUrl={avatarUrl} />
                     </div>
                     <div className={styles.info}>
                         <div className={styles.title}>
