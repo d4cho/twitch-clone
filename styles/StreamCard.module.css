@@ -117,15 +117,25 @@
     transition: translate 0.1s ease 0ms;
 }
 
-.title_wrapper {
+/* image animation stuff ends */
+
+.info_wrapper {
+    width: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-wrap: nowrap;
     margin-top: 0.5rem;
 }
 
-.title {
+.avatar {
+    margin-right: 1rem;
+}
+
+.info {
     width: 100%;
+    min-width: 0px;
+}
+
+.title {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
