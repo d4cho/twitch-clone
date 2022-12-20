@@ -21,7 +21,7 @@ const HomeDisplaySection = ({
             </div>
             <div className={styles.content_wrapper}>
                 {contentData &&
-                    contentData.data.map((data, idx) => {
+                    contentData.map((data, idx) => {
                         let bgColor = generateHexCode();
 
                         if (idx + 1 <= perLine) {
@@ -47,7 +47,7 @@ const HomeDisplaySection = ({
             {showMore && isShowMore && (
                 <div className={styles.content_wrapper}>
                     {contentData &&
-                        contentData.data.map((data, idx) => {
+                        contentData.map((data, idx) => {
                             let bgColor = generateHexCode();
 
                             if (idx + 1 > perLine && idx + 1 <= perLine * 2) {

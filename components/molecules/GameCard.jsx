@@ -8,6 +8,9 @@ import { nFormatter } from '../../utils/functions';
 
 const GameCard = ({ cardData, bgColor }) => {
     const { name, box_art_url, viewer_count, tags } = cardData;
+    const sizeAdjustedBoxArtUrl = box_art_url
+        .replace('{width}', '176')
+        .replace('{height}', '234');
 
     return (
         <div className={styles.container}>
@@ -24,7 +27,7 @@ const GameCard = ({ cardData, bgColor }) => {
                     <div className={styles.bg_bottom}></div>
                     <img
                         className={styles.image}
-                        src={box_art_url}
+                        src={sizeAdjustedBoxArtUrl}
                         alt={name}
                     />
                 </div>
