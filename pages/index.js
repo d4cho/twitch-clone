@@ -4,6 +4,7 @@ import HomeDisplaySection from '../components/organisms/HomeDisplaySection';
 import styles from '../styles/Home.module.css';
 import categoryData from '../assets/data/channel-categories.json';
 import NavBar from '../components/organisms/NavBar';
+import Carousel from '../components/organisms/Carousel';
 // import liveStreamsData from '../assets/data/live-streams.json';
 
 // export const getStaticPaths = async () => {
@@ -63,7 +64,7 @@ export default function Home({
             </Head>
 
             <div className={styles.carousel_wrapper}>
-                <h1>video carousel goes here</h1>
+                <Carousel />
             </div>
 
             <div className={styles.main_content}>

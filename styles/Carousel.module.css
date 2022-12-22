@@ -1,0 +1,144 @@
+.container {
+    border: 1px solid red;
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.slide {
+    width: 750px;
+    height: 300px;
+    position: absolute;
+}
+
+.slide_cover {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+}
+
+.opaque_cover {
+    background-color: black;
+    opacity: 0.7;
+}
+.opaque_cover:hover {
+    background-color: black;
+    opacity: 0.3;
+}
+
+/* hidden slide styles */
+.hide_slide {
+    position: absolute;
+    top: 50%;
+    z-index: 0;
+    translate: 28.5% -50%;
+    scale: 0.4;
+    opacity: 0;
+    transition: translate 0.3s ease, scale 0.3s ease, opacity 0.3s ease;
+}
+.next3_slide {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    translate: 69% -50%;
+    scale: 0.55;
+    opacity: 0;
+    transition: translate 0.3s ease, scale 0.3s ease, opacity 0.3s ease;
+}
+.prev3_slide {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    translate: -12% -50%;
+    scale: 0.55;
+    opacity: 0;
+    transition: translate 0.3s ease, scale 0.3s ease, opacity 0.3s ease;
+}
+
+/* visible slides styles */
+.active_slide {
+    position: absolute;
+    top: 50%;
+    z-index: 4;
+    translate: 28.5% -50%;
+    scale: 1;
+    opacity: 1;
+    transition: translate 0.3s ease, scale 0.3s ease, opacity 0.3s ease;
+}
+.next_slide {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    z-index: 3;
+    translate: 42.5% -50%;
+    scale: 0.85;
+    opacity: 1;
+    transition: translate 0.3s ease, scale 0.3s ease, opacity 0.3s ease;
+}
+.next2_slide {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    translate: 56% -50%;
+    scale: 0.7;
+    opacity: 1;
+    transition: translate 0.3s ease, scale 0.3s ease, opacity 0.3s ease;
+}
+.prev_slide {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    z-index: 3;
+    translate: 14.5% -50%;
+    scale: 0.85;
+    opacity: 1;
+    transition: translate 0.3s ease, scale 0.3s ease, opacity 0.3s ease;
+}
+.prev2_slide {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    translate: 1% -50%;
+    scale: 0.7;
+    opacity: 1;
+    transition: translate 0.3s ease, scale 0.3s ease, opacity 0.3s ease;
+}
+
+/* slide hover styles */
+.next_slide:hover,
+.prev_slide:hover {
+    scale: 0.875;
+}
+.next2_slide:hover,
+.prev2_slide:hover {
+    scale: 0.725;
+}
+
+/* button styles */
+.button {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    z-index: 4;
+
+    color: var(--color-off-white);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.button_prev {
+    left: 32px;
+}
+.button_next {
+    right: 32px;
+}
