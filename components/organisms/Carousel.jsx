@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../../styles/Carousel.module.css';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import HoverableIcon from '../atoms/HoverableIcon';
 
 const Carousel = () => {
     const [activeSlide, setActiveSlide] = useState(0);
@@ -60,7 +61,7 @@ const Carousel = () => {
                 className={[styles.button, styles.button_prev].join(' ')}
                 onClick={handlePrevClick}
             >
-                <FiChevronLeft size={25} />
+                <HoverableIcon icon={<FiChevronLeft size={25} />} />
             </button>
             {test.map((item, idx) => {
                 let active;
@@ -119,7 +120,7 @@ const Carousel = () => {
                 className={[styles.button, styles.button_next].join(' ')}
                 onClick={handleNextClick}
             >
-                <FiChevronRight size={25} />
+                <HoverableIcon icon={<FiChevronRight size={25} />} />
             </button>
         </div>
     );
