@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import styles from '../../styles/Carousel.module.css';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import HoverableIcon from '../atoms/HoverableIcon';
+import CarouselCard from '../molecules/CarouselCard';
 
-const Carousel = () => {
+const Carousel = ({ liveStreamData }) => {
     const [activeSlide, setActiveSlide] = useState(0);
 
     const handlePrevClick = () => {
@@ -63,7 +64,7 @@ const Carousel = () => {
             >
                 <HoverableIcon icon={<FiChevronLeft size={25} />} />
             </button>
-            {test.map((item, idx) => {
+            {liveStreamData.map((streamInfo, idx) => {
                 let active;
                 let next;
                 let next2;
@@ -102,7 +103,7 @@ const Carousel = () => {
                                 prev3
                             ) && styles.hide_slide,
                         ].join(' ')}
-                        style={{ backgroundColor: item.color }}
+                        // style={{ backgroundColor: item.color }}
                         onClick={() => handleSlideClick(idx)}
                     >
                         <div
@@ -111,7 +112,10 @@ const Carousel = () => {
                                 !active && styles.opaque_cover,
                             ].join(' ')}
                         >
-                            {item.num}
+                            <CarouselCard
+                                streamInfo={streamInfo}
+                                isActiveSlide={active}
+                            />
                         </div>
                     </div>
                 );

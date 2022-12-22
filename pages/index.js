@@ -64,7 +64,7 @@ export default function Home({
             </Head>
 
             <div className={styles.carousel_wrapper}>
-                <Carousel />
+                <Carousel liveStreamData={topStreams.data} />
             </div>
 
             <div className={styles.main_content}>
