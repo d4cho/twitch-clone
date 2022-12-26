@@ -1,8 +1,22 @@
 import React, { useState } from 'react';
+import GameCard from '../../components/molecules/GameCard';
 import NavBar from '../../components/organisms/NavBar';
 import styles from '../../styles/Directory.module.css';
+import { generateHexCode } from '../../utils/functions';
 
-const Directory = () => {
+export const getStaticProps = async (context) => {
+    const res2 = await fetch(`http://localhost:3000/top-games`);
+    const topGames = await res2.json();
+
+    return {
+        props: {
+            topGames: topGames,
+        },
+    };
+};
+
+const Directory = ({ topGames }) => {
+    console.log(topGames);
     const [selectedCategory, setSelectedCategory] = useState('categories');
 
     const handleCategoryClick = (selected) => {
@@ -60,7 +74,12 @@ const Directory = () => {
                     </div>
                 </div>
             </div>
-            <div className={styles.list_wrapper}>List of Games</div>
+            <div className={styles.list_wrapper}>
+                {topGames.data.map((gameData) => {
+                    let bgColor = generateHexCode();
+                    return <GameCard cardData={gameData} bgColor={bgColor} />;
+                })}
+            </div>
         </div>
     );
 };

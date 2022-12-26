@@ -26,6 +26,9 @@
     cursor: pointer;
     padding-bottom: 0.5rem;
 }
+.categories_channels h2 {
+    font-size: 18px;
+}
 .selected {
     color: var(--color-purple-hover);
     border-bottom: 2px solid var(--color-purple-hover);
@@ -53,4 +56,8 @@
 
 .list_wrapper {
     margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 1rem;
 }
