@@ -21,10 +21,12 @@ const GameCard = ({ cardData, bgColor }) => {
                         '--bgColor': bgColor,
                     }}
                 >
-                    <div className={styles.bg_top_left}></div>
-                    <div className={styles.bg_bottom_right}></div>
-                    <div className={styles.bg_left}></div>
-                    <div className={styles.bg_bottom}></div>
+                    <div className={styles.border_wrapper}>
+                        <div className={styles.bg_top_left}></div>
+                        <div className={styles.bg_bottom_right}></div>
+                        <div className={styles.bg_left}></div>
+                        <div className={styles.bg_bottom}></div>
+                    </div>
                     <img
                         className={styles.image}
                         src={sizeAdjustedBoxArtUrl}
