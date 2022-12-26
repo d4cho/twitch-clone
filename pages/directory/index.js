@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
 import GameCard from '../../components/molecules/GameCard';
+import StreamCard from '../../components/molecules/StreamCard';
 import NavBar from '../../components/organisms/NavBar';
 import styles from '../../styles/Directory.module.css';
 import { generateHexCode } from '../../utils/functions';
 
 export const getStaticProps = async (context) => {
+    const res1 = await fetch(`http://localhost:3000/top-streams`);
+    const topStreams = await res1.json();
     const res2 = await fetch(`http://localhost:3000/top-games`);
     const topGames = await res2.json();
 
     return {
         props: {
+            topStreams: topStreams,
             topGames: topGames,
         },
     };
 };
 
-const Directory = ({ topGames }) => {
-    console.log(topGames);
+const Directory = ({ topStreams, topGames }) => {
     const [selectedCategory, setSelectedCategory] = useState('categories');
 
     const handleCategoryClick = (selected) => {
@@ -75,10 +78,24 @@ const Directory = ({ topGames }) => {
                 </div>
             </div>
             <div className={styles.list_wrapper}>
-                {topGames.data.map((gameData) => {
-                    let bgColor = generateHexCode();
-                    return <GameCard cardData={gameData} bgColor={bgColor} />;
-                })}
+                {selectedCategory === 'categories' &&
+                    topGames.data.map((gameData) => {
+                        let bgColor = generateHexCode();
+                        return (
+                            <GameCard cardData={gameData} bgColor={bgColor} />
+                        );
+                    })}
+
+                {selectedCategory === 'live' &&
+                    topStreams.data.map((streamData) => {
+                        let bgColor = generateHexCode();
+                        return (
+                            <StreamCard
+                                cardData={streamData}
+                                bgColor={bgColor}
+                            />
+                        );
+                    })}
             </div>
         </div>
     );
