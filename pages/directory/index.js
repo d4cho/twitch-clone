@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import GameCard from '../../components/molecules/GameCard';
 import StreamCard from '../../components/molecules/StreamCard';
 import NavBar from '../../components/organisms/NavBar';
@@ -21,13 +21,50 @@ export const getStaticProps = async (context) => {
 
 const Directory = ({ topStreams, topGames }) => {
     const [selectedCategory, setSelectedCategory] = useState('categories');
+    const [topGamesList, setTopGamesList] = useState({
+        games: [...topGames.data],
+        cursor: topGames.pagination.cursor,
+    });
+
+    useEffect(() => {
+        setTopGamesList({
+            games: [...topGames.data],
+            cursor: topGames.pagination.cursor,
+        });
+    }, [selectedCategory]);
 
     const handleCategoryClick = (selected) => {
         setSelectedCategory(selected);
     };
 
+    const handleScroll = (e) => {
+        console.log(
+            e.target.scrollTop + e.target.clientHeight + 1,
+            e.target.scrollHeight
+        );
+
+        if (
+            e.target.scrollTop + e.target.clientHeight + 1 >=
+            e.target.scrollHeight
+        ) {
+            callMoreGamesApi();
+        }
+    };
+
+    const callMoreGamesApi = async () => {
+        const res = await fetch(
+            `http://localhost:3000/top-games/more/${topGamesList.cursor}`
+        );
+        const data = await res.json();
+
+        setTopGamesList({
+            games: [...topGamesList.games, ...data.data],
+            cursor: data.pagination.cursor,
+        });
+    };
+
     return (
-        <div className={styles.container}>
+        <div className={styles.container} onScroll={(e) => handleScroll(e)}>
             <h1 className={styles.title}>Browse</h1>
             <div className={styles.nav_wrapper}>
                 <NavBar />
@@ -79,7 +116,7 @@ const Directory = ({ topStreams, topGames }) => {
             </div>
             <div className={styles.list_wrapper}>
                 {selectedCategory === 'categories' &&
-                    topGames.data.map((gameData) => {
+                    topGamesList.games.map((gameData) => {
                         let bgColor = generateHexCode();
                         return (
                             <GameCard cardData={gameData} bgColor={bgColor} />
