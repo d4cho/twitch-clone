@@ -25,11 +25,19 @@ const Directory = ({ topStreams, topGames }) => {
         games: [...topGames.data],
         cursor: topGames.pagination.cursor,
     });
+    const [topStreamsList, setTopStreamsList] = useState({
+        streams: [...topStreams.data],
+        cursor: topStreams.pagination.cursor,
+    });
 
     useEffect(() => {
         setTopGamesList({
             games: [...topGames.data],
             cursor: topGames.pagination.cursor,
+        });
+        setTopStreamsList({
+            streams: [...topStreams.data],
+            cursor: topStreams.pagination.cursor,
         });
     }, [selectedCategory]);
 
@@ -38,16 +46,15 @@ const Directory = ({ topStreams, topGames }) => {
     };
 
     const handleScroll = (e) => {
-        console.log(
-            e.target.scrollTop + e.target.clientHeight + 1,
-            e.target.scrollHeight
-        );
-
         if (
             e.target.scrollTop + e.target.clientHeight + 1 >=
             e.target.scrollHeight
         ) {
-            callMoreGamesApi();
+            if (selectedCategory === 'categories') {
+                callMoreGamesApi();
+            } else {
+                callMoreStreamsApi();
+            }
         }
     };
 
@@ -59,6 +66,18 @@ const Directory = ({ topStreams, topGames }) => {
 
         setTopGamesList({
             games: [...topGamesList.games, ...data.data],
+            cursor: data.pagination.cursor,
+        });
+    };
+
+    const callMoreStreamsApi = async () => {
+        const res = await fetch(
+            `http://localhost:3000/top-streams/more/${topStreamsList.cursor}`
+        );
+        const data = await res.json();
+
+        setTopStreamsList({
+            streams: [...topStreamsList.streams, ...data.data],
             cursor: data.pagination.cursor,
         });
     };
@@ -124,7 +143,7 @@ const Directory = ({ topStreams, topGames }) => {
                     })}
 
                 {selectedCategory === 'live' &&
-                    topStreams.data.map((streamData) => {
+                    topStreamsList.streams.map((streamData) => {
                         let bgColor = generateHexCode();
                         return (
                             <StreamCard
