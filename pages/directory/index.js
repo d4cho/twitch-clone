@@ -30,6 +30,7 @@ const Directory = ({ topStreams, topGames }) => {
         cursor: topStreams.pagination.cursor,
     });
 
+    // to reset lists
     useEffect(() => {
         setTopGamesList({
             games: [...topGames.data],

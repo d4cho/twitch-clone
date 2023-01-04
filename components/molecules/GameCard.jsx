@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../../styles/GameCard.module.css';
 import { SlOptionsVertical } from 'react-icons/sl';
 import HoverableIcon from '../atoms/HoverableIcon';
 import HoverableText from '../atoms/HoverableText';
 import Chip from '../atoms/Chip';
 import { nFormatter } from '../../utils/functions';
+import { useRouter } from 'next/router';
 
 const GameCard = ({ cardData, bgColor }) => {
-    const { name, box_art_url, viewer_count, tags } = cardData;
+    const router = useRouter();
+
+    const { name, box_art_url, id: gameId, tags } = cardData;
     const sizeAdjustedBoxArtUrl = box_art_url
         .replace('{width}', '176')
         .replace('{height}', '234');
 
+    const [viewerCount, setViewerCount] = useState(0);
+
+    const handleGameCardClick = (gameName) => {
+        router.push(`/directory/game/${gameName}`);
+    };
+
     return (
-        <div className={styles.container}>
+        <div
+            className={styles.container}
+            onClick={() => handleGameCardClick(name)}
+        >
             <div className={styles.wrapper}>
                 <div
                     className={styles.image_wrapper}
@@ -56,7 +68,7 @@ const GameCard = ({ cardData, bgColor }) => {
                     />
                 </div>
                 <HoverableText
-                    text={`${nFormatter(viewer_count, 1)} viewers`}
+                    text={`${nFormatter(viewerCount, 1)} viewers`}
                     fontSize={'13px'}
                     hoverEffects={{
                         changeColor: true,
