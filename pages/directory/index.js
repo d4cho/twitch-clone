@@ -119,16 +119,11 @@ const Directory = ({ topStreams, topGames }) => {
                     <div className={styles.filter_sort_heading}>Sort by</div>
                     <div>
                         <select>
-                            <option value={null}>Recommended For You</option>
-                            <option value='actual value 1'>
-                                Display Text 1
+                            <option value='' selected disabled hidden>
+                                Recommended For You
                             </option>
-                            <option value='actual value 2'>
-                                Display Text 2
-                            </option>
-                            <option value='actual value 3'>
-                                Display Text 3
-                            </option>
+                            <option value='2'>Recommended For You</option>
+                            <option value='2'>Viewers (High to Low)</option>
                         </select>
                     </div>
                 </div>
