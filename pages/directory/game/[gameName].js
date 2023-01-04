@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../../../styles/GameDetails.module.css';
 import { useRouter } from 'next/router';
 import GameInfoLayout from '../../../components/molecules/GameInfoLayout';
@@ -10,13 +10,18 @@ const GameDetails = () => {
     const { gameName } = router.query;
 
     const [selectedPage, setSelectedPage] = useState('Live Channels');
+    const [gameInfo, setGameInfo] = useState({});
 
     //  add api call to game info
-    // start ui layout
+    useEffect(() => {
+        fetch(`http://localhost:3000/game-info/${gameName}`)
+            .then((res) => res.json())
+            .then((data) => setGameInfo(data.data[0]));
+    }, []);
 
     return (
         <div className={styles.container}>
-            <GameInfoLayout />
+            <GameInfoLayout gameName={gameName} gameInfo={gameInfo} />
 
             <div className={styles.page_selector_wrapper}>
                 {PAGES.map((page, idx) => {
