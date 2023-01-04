@@ -123,7 +123,7 @@ const Directory = ({ topStreams, topGames }) => {
                             <option value='' selected disabled hidden>
                                 Recommended For You
                             </option>
-                            <option value='2'>Recommended For You</option>
+                            <option value='1'>Recommended For You</option>
                             <option value='2'>Viewers (High to Low)</option>
                         </select>
                     </div>
