@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../../styles/GameInfoLayout.module.css';
 import Chip from '../atoms/Chip';
+import HoverableText from '../atoms/HoverableText';
+import { FiChevronDown } from 'react-icons/fi';
+import { BsSuitHeart, BsSuitHeartFill } from 'react-icons/bs';
+import { FaHeartBroken } from 'react-icons/fa';
 
 const CHIPS = ['RPG', 'MOBA', 'Action', 'Strategy'];
 
@@ -9,6 +13,9 @@ const GameInfoLayout = ({ gameName, gameInfo }) => {
     const sizeAdjustedBoxArtUrl =
         box_art_url &&
         box_art_url.replace('{width}', '144').replace('{height}', '192');
+
+    const [isFollowing, setIsFollowing] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
 
     return (
         <div className={styles.container}>
@@ -59,10 +66,57 @@ const GameInfoLayout = ({ gameName, gameInfo }) => {
                         a thriving tournament scene, League of Legends offers
                         endless replayability for players of every skill level.
                     </p>
-                    <button>More</button>
+                    <button>
+                        <HoverableText
+                            text={
+                                <div className={styles.button_text}>
+                                    <div>More</div>
+                                    <div>
+                                        <FiChevronDown size={20} />
+                                    </div>
+                                </div>
+                            }
+                            fontSize={'14px'}
+                            fontWeight={'bold'}
+                            initialColor={'#bf94ff'}
+                            hoverColor={'#a970ff'}
+                            hoverEffects={{ changeColor: true }}
+                        />
+                    </button>
                 </div>
                 <div className={styles.button_container}>
-                    <button>Follow</button>
+                    <button
+                        className={[
+                            styles.follow_button,
+                            isFollowing ? styles.following : styles.follow,
+                        ].join(' ')}
+                        onClick={() => setIsFollowing(!isFollowing)}
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
+                    >
+                        <div className={styles.follow_button_item}>
+                            {isHovered ? (
+                                isFollowing ? (
+                                    <FaHeartBroken size={20} />
+                                ) : (
+                                    <BsSuitHeartFill size={20} />
+                                )
+                            ) : isFollowing ? (
+                                <BsSuitHeartFill size={16} />
+                            ) : (
+                                <BsSuitHeart size={16} />
+                            )}
+                        </div>
+                        <div className={styles.follow_button_item}>
+                            {isHovered
+                                ? isFollowing
+                                    ? 'Unfollow'
+                                    : 'Follow'
+                                : isFollowing
+                                ? 'Following'
+                                : 'Follow'}
+                        </div>
+                    </button>
                 </div>
             </div>
         </div>

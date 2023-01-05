@@ -49,7 +49,53 @@
     overflow: hidden;
     text-overflow: ellipsis; */
 }
+.desc_wrapper > button {
+    border: none;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+}
+.button_text {
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .button_container {
     margin-top: 20px;
+}
+
+.follow_button {
+    cursor: pointer;
+    user-select: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 0.75rem;
+    font-weight: 600;
+    font-size: 14px;
+
+    display: grid;
+    column-gap: 0.5rem;
+    grid-template-columns: 20px auto;
+}
+.follow_button_item {
+    place-self: center;
+}
+
+.follow {
+    background-color: #9147ff;
+    color: #fff;
+}
+.follow:hover {
+    background-color: var(--color-purple-hover);
+}
+
+.following {
+    background-color: hsla(0, 0%, 100%, 0.08);
+    color: #fff;
+}
+.following:hover {
+    background-color: #ffaaa8;
+    color: #000;
 }
