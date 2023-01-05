@@ -6,6 +6,50 @@
     column-gap: 2rem;
 }
 
+.image {
+    min-width: 144px;
+}
+
+.content h1 {
+    font-size: 36px;
+    color: var(--color-off-white);
+}
+
 .viewers_followers_chips_wrapper {
     display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+.dot_divider {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    font-size: 1.8rem;
+}
+.chips_wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.desc_wrapper {
+    max-width: 640px;
+    display: flex;
+    align-items: flex-end;
+}
+.desc_wrapper > p {
+    color: var(--color-sub-grey);
+    font-size: 13px;
+    line-height: 1.5;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+    /* white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; */
+}
+
+.button_container {
+    margin-top: 20px;
 }

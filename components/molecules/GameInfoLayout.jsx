@@ -1,5 +1,8 @@
 import React from 'react';
 import styles from '../../styles/GameInfoLayout.module.css';
+import Chip from '../atoms/Chip';
+
+const CHIPS = ['RPG', 'MOBA', 'Action', 'Strategy'];
 
 const GameInfoLayout = ({ gameName, gameInfo }) => {
     const { box_art_url } = gameInfo;
@@ -9,18 +12,43 @@ const GameInfoLayout = ({ gameName, gameInfo }) => {
 
     return (
         <div className={styles.container}>
-            <div>
+            <div className={styles.image}>
                 {/* put loading state here */}
                 <img src={sizeAdjustedBoxArtUrl} alt={gameName + 'box art'} />
             </div>
-            <div>
+            <div className={styles.content}>
                 <h1>{gameName}</h1>
                 <div className={styles.viewers_followers_chips_wrapper}>
-                    <p>viewers</p>
-                    <p>followers</p>
-                    <div>chips</div>
+                    <div>
+                        <p>
+                            <b>129K</b> Viewers
+                        </p>
+                    </div>
+                    <div className={styles.dot_divider}>
+                        <p>•</p>
+                    </div>
+                    <div>
+                        <p>
+                            <b>35.1M</b> Followers
+                        </p>
+                    </div>
+                    <div className={styles.dot_divider}>
+                        <p>•</p>
+                    </div>
+                    <div className={styles.chips_wrapper}>
+                        {CHIPS.map((chip, idx) => {
+                            return (
+                                <React.Fragment key={idx}>
+                                    <Chip
+                                        chipText={chip}
+                                        styleOverride={{ marginBottom: 0 }}
+                                    />
+                                </React.Fragment>
+                            );
+                        })}
+                    </div>
                 </div>
-                <div>
+                <div className={styles.desc_wrapper}>
                     <p>
                         League of Legends is a fast-paced, competitive online
                         game that blends the speed and intensity of an RTS with
@@ -31,8 +59,11 @@ const GameInfoLayout = ({ gameName, gameInfo }) => {
                         a thriving tournament scene, League of Legends offers
                         endless replayability for players of every skill level.
                     </p>
+                    <button>More</button>
                 </div>
-                <button>Follow</button>
+                <div className={styles.button_container}>
+                    <button>Follow</button>
+                </div>
             </div>
         </div>
     );
