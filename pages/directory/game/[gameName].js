@@ -22,23 +22,27 @@ const GameDetails = () => {
 
     //  add api call to game info
     useEffect(() => {
-        // game info api
-        fetch(`http://localhost:3000/game-info/${gameName}`)
-            .then((res) => res.json())
-            .then((data) => {
-                setGameInfo(data.data[0]);
+        if (gameName) {
+            // game info api
+            fetch(`http://localhost:3000/game-info/${gameName}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    setGameInfo(data.data[0]);
 
-                // top streams api
-                fetch(`http://localhost:3000/top-streams/${data.data[0].id}`)
-                    .then((res) => res.json())
-                    .then((data) =>
-                        setTopStreamsList({
-                            streams: data.data,
-                            cursor: data.pagination.cursor,
-                        })
-                    );
-            });
-    }, []);
+                    // top streams api
+                    fetch(
+                        `http://localhost:3000/top-streams/${data.data[0].id}`
+                    )
+                        .then((res) => res.json())
+                        .then((data) =>
+                            setTopStreamsList({
+                                streams: data.data,
+                                cursor: data.pagination.cursor,
+                            })
+                        );
+                });
+        }
+    }, [gameName]);
 
     const handleScroll = (e) => {
         if (
