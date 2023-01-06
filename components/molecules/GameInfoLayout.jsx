@@ -8,7 +8,12 @@ import { FaHeartBroken } from 'react-icons/fa';
 
 const CHIPS = ['RPG', 'MOBA', 'Action', 'Strategy'];
 
-const GameInfoLayout = ({ gameName, gameInfo, setIsModalOpen }) => {
+const GameInfoLayout = ({
+    gameName,
+    gameInfo,
+    setIsModalOpen,
+    isFromModal,
+}) => {
     const { box_art_url } = gameInfo;
     const sizeAdjustedBoxArtUrl =
         box_art_url &&
@@ -56,7 +61,7 @@ const GameInfoLayout = ({ gameName, gameInfo, setIsModalOpen }) => {
                     </div>
                 </div>
                 <div className={styles.desc_wrapper}>
-                    <p>
+                    <p className={!isFromModal && styles.ellipsis_p}>
                         League of Legends is a fast-paced, competitive online
                         game that blends the speed and intensity of an RTS with
                         RPG elements. Two teams of powerful champions, each with
@@ -66,23 +71,25 @@ const GameInfoLayout = ({ gameName, gameInfo, setIsModalOpen }) => {
                         a thriving tournament scene, League of Legends offers
                         endless replayability for players of every skill level.
                     </p>
-                    <button onClick={() => setIsModalOpen(true)}>
-                        <HoverableText
-                            text={
-                                <div className={styles.button_text}>
-                                    <div>More</div>
-                                    <div>
-                                        <FiChevronDown size={20} />
+                    {!isFromModal && (
+                        <button onClick={() => setIsModalOpen(true)}>
+                            <HoverableText
+                                text={
+                                    <div className={styles.button_text}>
+                                        <div>More</div>
+                                        <div>
+                                            <FiChevronDown size={20} />
+                                        </div>
                                     </div>
-                                </div>
-                            }
-                            fontSize={'14px'}
-                            fontWeight={'bold'}
-                            initialColor={'#bf94ff'}
-                            hoverColor={'#a970ff'}
-                            hoverEffects={{ changeColor: true }}
-                        />
-                    </button>
+                                }
+                                fontSize={'14px'}
+                                fontWeight={'bold'}
+                                initialColor={'#bf94ff'}
+                                hoverColor={'#a970ff'}
+                                hoverEffects={{ changeColor: true }}
+                            />
+                        </button>
+                    )}
                 </div>
                 <div className={styles.button_container}>
                     <button

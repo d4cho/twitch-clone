@@ -35,7 +35,7 @@
     display: flex;
     align-items: flex-end;
 }
-.desc_wrapper > p {
+.ellipsis_p {
     color: var(--color-sub-grey);
     font-size: 13px;
     line-height: 1.5;

@@ -31,6 +31,7 @@ const GameDetails = () => {
                         gameName={gameName}
                         gameInfo={gameInfo}
                         setIsModalOpen={setIsModalOpen}
+                        isFromModal
                     />
                 }
             />
