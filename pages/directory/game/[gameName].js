@@ -3,6 +3,8 @@ import styles from '../../../styles/GameDetails.module.css';
 import { useRouter } from 'next/router';
 import GameInfoLayout from '../../../components/molecules/GameInfoLayout';
 import Modal from '../../../components/organisms/Modal';
+import { generateHexCode } from '../../../utils/functions';
+import StreamCard from '../../../components/molecules/StreamCard';
 
 const PAGES = ['Live Channels', 'Upcoming', 'Videos', 'Clips'];
 
@@ -10,19 +12,60 @@ const GameDetails = () => {
     const router = useRouter();
     const { gameName } = router.query;
 
-    const [selectedPage, setSelectedPage] = useState('Live Channels');
-    const [gameInfo, setGameInfo] = useState({});
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedTab, setSelectedTab] = useState('Live Channels');
+    const [gameInfo, setGameInfo] = useState({});
+    const [topStreamsList, setTopStreamsList] = useState({
+        streams: [],
+        cursor: '',
+    });
 
     //  add api call to game info
     useEffect(() => {
+        // game info api
         fetch(`http://localhost:3000/game-info/${gameName}`)
             .then((res) => res.json())
-            .then((data) => setGameInfo(data.data[0]));
+            .then((data) => {
+                setGameInfo(data.data[0]);
+
+                // top streams api
+                fetch(`http://localhost:3000/top-streams/${data.data[0].id}`)
+                    .then((res) => res.json())
+                    .then((data) =>
+                        setTopStreamsList({
+                            streams: data.data,
+                            cursor: data.pagination.cursor,
+                        })
+                    );
+            });
     }, []);
 
+    const handleScroll = (e) => {
+        if (
+            e.target.scrollTop + e.target.clientHeight + 1 >=
+            e.target.scrollHeight
+        ) {
+            if (selectedTab === 'Live Channels') {
+                callMoreStreamsApi();
+            } else {
+            }
+        }
+    };
+
+    const callMoreStreamsApi = async () => {
+        const res = await fetch(
+            `http://localhost:3000/top-streams/more/${gameInfo.id}/${topStreamsList.cursor}`
+        );
+        const data = await res.json();
+
+        setTopStreamsList({
+            streams: [...topStreamsList.streams, ...data.data],
+            cursor: data.pagination.cursor,
+        });
+    };
+
     return (
-        <div className={styles.container}>
+        <div className={styles.container} onScroll={(e) => handleScroll(e)}>
             <Modal
                 isOpen={isModalOpen}
                 onBackdropClick={() => setIsModalOpen(false)}
@@ -48,9 +91,9 @@ const GameDetails = () => {
                         <div
                             key={idx}
                             className={[
-                                selectedPage === page && styles.selected,
+                                selectedTab === page && styles.selected,
                             ].join(' ')}
-                            onClick={() => setSelectedPage(page)}
+                            onClick={() => setSelectedTab(page)}
                         >
                             <h2>{page}</h2>
                         </div>
@@ -78,6 +121,19 @@ const GameDetails = () => {
                         </select>
                     </div>
                 </div>
+            </div>
+
+            <div className={styles.list_wrapper}>
+                {selectedTab === 'Live Channels' &&
+                    topStreamsList.streams.map((streamData) => {
+                        let bgColor = generateHexCode();
+                        return (
+                            <StreamCard
+                                cardData={streamData}
+                                bgColor={bgColor}
+                            />
+                        );
+                    })}
             </div>
         </div>
     );
