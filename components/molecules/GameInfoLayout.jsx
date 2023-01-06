@@ -8,7 +8,7 @@ import { FaHeartBroken } from 'react-icons/fa';
 
 const CHIPS = ['RPG', 'MOBA', 'Action', 'Strategy'];
 
-const GameInfoLayout = ({ gameName, gameInfo }) => {
+const GameInfoLayout = ({ gameName, gameInfo, setIsModalOpen }) => {
     const { box_art_url } = gameInfo;
     const sizeAdjustedBoxArtUrl =
         box_art_url &&
@@ -66,7 +66,7 @@ const GameInfoLayout = ({ gameName, gameInfo }) => {
                         a thriving tournament scene, League of Legends offers
                         endless replayability for players of every skill level.
                     </p>
-                    <button>
+                    <button onClick={() => setIsModalOpen(true)}>
                         <HoverableText
                             text={
                                 <div className={styles.button_text}>

@@ -1,0 +1,49 @@
+.container {
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+}
+
+.isOpen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.backdrop {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.modal_content {
+    z-index: 2;
+    position: relative;
+    background-color: #18181b;
+    padding: 30px;
+}
+
+.close_btn_wrapper {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+.close_btn {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    color: var(--color-off-white);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

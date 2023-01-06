@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from '../../../styles/GameDetails.module.css';
 import { useRouter } from 'next/router';
 import GameInfoLayout from '../../../components/molecules/GameInfoLayout';
+import Modal from '../../../components/organisms/Modal';
 
 const PAGES = ['Live Channels', 'Upcoming', 'Videos', 'Clips'];
 
@@ -11,6 +12,7 @@ const GameDetails = () => {
 
     const [selectedPage, setSelectedPage] = useState('Live Channels');
     const [gameInfo, setGameInfo] = useState({});
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     //  add api call to game info
     useEffect(() => {
@@ -21,7 +23,23 @@ const GameDetails = () => {
 
     return (
         <div className={styles.container}>
-            <GameInfoLayout gameName={gameName} gameInfo={gameInfo} />
+            <Modal
+                isOpen={isModalOpen}
+                onBackdropClick={() => setIsModalOpen(false)}
+                modalContent={
+                    <GameInfoLayout
+                        gameName={gameName}
+                        gameInfo={gameInfo}
+                        setIsModalOpen={setIsModalOpen}
+                    />
+                }
+            />
+
+            <GameInfoLayout
+                gameName={gameName}
+                gameInfo={gameInfo}
+                setIsModalOpen={setIsModalOpen}
+            />
 
             <div className={styles.page_selector_wrapper}>
                 {PAGES.map((page, idx) => {
