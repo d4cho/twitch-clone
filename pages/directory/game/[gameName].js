@@ -19,6 +19,14 @@ const GameDetails = () => {
         streams: [],
         cursor: '',
     });
+    const [topClipsList, setTopClipsList] = useState({
+        clips: [],
+        cursor: '',
+    });
+    const [topVideosList, setTopVideosList] = useState({
+        videos: [],
+        cursor: '',
+    });
 
     //  add api call to game info
     useEffect(() => {
@@ -29,43 +37,102 @@ const GameDetails = () => {
                 .then((data) => {
                     setGameInfo(data.data[0]);
 
-                    // top streams api
-                    fetch(
-                        `http://localhost:3000/top-streams/${data.data[0].id}`
-                    )
-                        .then((res) => res.json())
-                        .then((data) =>
-                            setTopStreamsList({
-                                streams: data.data,
-                                cursor: data.pagination.cursor,
-                            })
-                        );
+                    // get stream / clips / videos
+                    callGetApi(data.data[0].id);
                 });
         }
-    }, [gameName]);
+    }, [gameName, selectedTab]);
 
     const handleScroll = (e) => {
         if (
             e.target.scrollTop + e.target.clientHeight + 1 >=
             e.target.scrollHeight
         ) {
-            if (selectedTab === 'Live Channels') {
-                callMoreStreamsApi();
-            } else {
-            }
+            callGetMoreApi();
         }
     };
 
-    const callMoreStreamsApi = async () => {
-        const res = await fetch(
-            `http://localhost:3000/top-streams/more/${gameInfo.id}/${topStreamsList.cursor}`
-        );
-        const data = await res.json();
+    const callGetApi = (gameId) => {
+        switch (selectedTab) {
+            case 'Live Channels':
+                fetch(`http://localhost:3000/top-streams/${gameId}`)
+                    .then((res) => res.json())
+                    .then((data) =>
+                        setTopStreamsList({
+                            streams: data.data,
+                            cursor: data.pagination.cursor,
+                        })
+                    );
+                break;
 
-        setTopStreamsList({
-            streams: [...topStreamsList.streams, ...data.data],
-            cursor: data.pagination.cursor,
-        });
+            case 'Videos':
+                fetch(`http://localhost:3000/get-videos/${gameId}`)
+                    .then((res) => res.json())
+                    .then((data) =>
+                        setTopVideosList({
+                            videos: data.data,
+                            cursor: data.pagination.cursor,
+                        })
+                    );
+                break;
+
+            case 'Clips':
+                fetch(`http://localhost:3000/get-clips/${gameId}`)
+                    .then((res) => res.json())
+                    .then((data) =>
+                        setTopClipsList({
+                            clips: data.data,
+                            cursor: data.pagination.cursor,
+                        })
+                    );
+                break;
+
+            default:
+                break;
+        }
+    };
+
+    const callGetMoreApi = async () => {
+        switch (selectedTab) {
+            case 'Live Channels':
+                const res = await fetch(
+                    `http://localhost:3000/top-streams/more/${gameInfo.id}/${topStreamsList.cursor}`
+                );
+                const data = await res.json();
+
+                setTopStreamsList({
+                    streams: [...topStreamsList.streams, ...data.data],
+                    cursor: data.pagination.cursor,
+                });
+                break;
+
+            case 'Videos':
+                const res1 = await fetch(
+                    `http://localhost:3000/get-videos/more/${gameInfo.id}/${topVideosList.cursor}`
+                );
+                const data1 = await res1.json();
+
+                setTopVideosList({
+                    videos: [...topVideosList.videos, ...data1.data],
+                    cursor: data1.pagination.cursor,
+                });
+                break;
+
+            case 'Clips':
+                const res2 = await fetch(
+                    `http://localhost:3000/get-clips/more/${gameInfo.id}/${topClipsList.cursor}`
+                );
+                const data2 = await res2.json();
+
+                setTopClipsList({
+                    clips: [...topClipsList.clips, ...data2.data],
+                    cursor: data2.pagination.cursor,
+                });
+                break;
+
+            default:
+                break;
+        }
     };
 
     return (
@@ -136,6 +203,25 @@ const GameDetails = () => {
                                 cardData={streamData}
                                 bgColor={bgColor}
                             />
+                        );
+                    })}
+
+                {selectedTab === 'Videos' &&
+                    topVideosList.videos.map((videosData) => {
+                        let bgColor = generateHexCode();
+                        return (
+                            <StreamCard
+                                cardData={videosData}
+                                bgColor={bgColor}
+                            />
+                        );
+                    })}
+
+                {selectedTab === 'Clips' &&
+                    topClipsList.clips.map((clipData) => {
+                        let bgColor = generateHexCode();
+                        return (
+                            <StreamCard cardData={clipData} bgColor={bgColor} />
                         );
                     })}
             </div>
