@@ -213,6 +213,7 @@ const GameDetails = () => {
                             <StreamCard
                                 cardData={videosData}
                                 bgColor={bgColor}
+                                type={'videos'}
                             />
                         );
                     })}
@@ -221,7 +222,11 @@ const GameDetails = () => {
                     topClipsList.clips.map((clipData) => {
                         let bgColor = generateHexCode();
                         return (
-                            <StreamCard cardData={clipData} bgColor={bgColor} />
+                            <StreamCard
+                                cardData={clipData}
+                                bgColor={bgColor}
+                                type={'clips'}
+                            />
                         );
                     })}
             </div>

@@ -7,16 +7,21 @@ import Chip from '../atoms/Chip';
 import { nFormatter } from '../../utils/functions';
 import ProfileIcon from '../atoms/ProfileIcon';
 
-const StreamCard = ({ cardData, bgColor }) => {
+const StreamCard = ({ cardData, bgColor, type }) => {
     const {
         user_id,
+        broadcaster_id,
         title,
         thumbnail_url,
         user_name,
         game_name,
         viewer_count,
+        view_count,
         tags,
+        duration,
     } = cardData;
+
+    console.log(cardData);
 
     const sizeAdjustedThumbnailUrl = thumbnail_url
         .replace('{width}', '440')
@@ -25,7 +30,7 @@ const StreamCard = ({ cardData, bgColor }) => {
     const [avatarUrl, setAvatarUrl] = useState('');
 
     useEffect(() => {
-        fetch(`http://localhost:3000/user/${user_id}`)
+        fetch(`http://localhost:3000/user/${user_id || broadcaster_id}`)
             .then((res) => res.json())
             .then((data) => {
                 setAvatarUrl(data.data[0]['profile_image_url']);
@@ -49,9 +54,16 @@ const StreamCard = ({ cardData, bgColor }) => {
                     {/* bg borders - end */}
 
                     <div className={styles.image_wrapper}>
-                        <div className={styles.live}>LIVE</div>
+                        {type === 'videos' || type === 'clips' ? (
+                            <div className={styles.duration}>{duration}</div>
+                        ) : (
+                            <div className={styles.live}>LIVE</div>
+                        )}
+
                         <div className={styles.viewer_count}>
-                            {`${nFormatter(viewer_count)} viewers`}
+                            {type === 'videos' || type === 'clips'
+                                ? `${nFormatter(view_count)} views`
+                                : `${nFormatter(viewer_count)} viewers`}
                         </div>
                         <img
                             className={styles.image}
