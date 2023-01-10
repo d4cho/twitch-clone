@@ -5,6 +5,7 @@ import GameInfoLayout from '../../../components/molecules/GameInfoLayout';
 import Modal from '../../../components/organisms/Modal';
 import { generateHexCode } from '../../../utils/functions';
 import StreamCard from '../../../components/molecules/StreamCard';
+import UpcomingSection from '../../../components/organisms/UpcomingSection';
 
 const PAGES = ['Live Channels', 'Upcoming', 'Videos', 'Clips'];
 
@@ -172,27 +173,31 @@ const GameDetails = () => {
                 })}
             </div>
 
-            <div className={styles.filter_sort_container}>
-                <div className={styles.filter_sort_wrapper}>
-                    <div>
-                        <input type='text' placeholder='Search Tags' />
+            {selectedTab === 'Upcoming' ? null : (
+                <div className={styles.filter_sort_container}>
+                    <div className={styles.filter_sort_wrapper}>
+                        <div>
+                            <input type='text' placeholder='Search Tags' />
+                        </div>
+                    </div>
+                    <div className={styles.filter_sort_wrapper}>
+                        <div className={styles.filter_sort_heading}>
+                            Sort by
+                        </div>
+                        <div>
+                            <select>
+                                <option value='' selected disabled hidden>
+                                    Viewers (High to Low)
+                                </option>
+                                <option value='1'>Recommended For You</option>
+                                <option value='2'>Viewers (High to Low)</option>
+                                <option value='3'>Viewers (Low to High)</option>
+                                <option value='4'>Recently Started</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <div className={styles.filter_sort_wrapper}>
-                    <div className={styles.filter_sort_heading}>Sort by</div>
-                    <div>
-                        <select>
-                            <option value='' selected disabled hidden>
-                                Viewers (High to Low)
-                            </option>
-                            <option value='1'>Recommended For You</option>
-                            <option value='2'>Viewers (High to Low)</option>
-                            <option value='3'>Viewers (Low to High)</option>
-                            <option value='4'>Recently Started</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+            )}
 
             <div className={styles.list_wrapper}>
                 {selectedTab === 'Live Channels' &&
@@ -205,6 +210,8 @@ const GameDetails = () => {
                             />
                         );
                     })}
+
+                {selectedTab === 'Upcoming' && <UpcomingSection />}
 
                 {selectedTab === 'Videos' &&
                     topVideosList.videos.map((videosData) => {
