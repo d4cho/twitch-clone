@@ -1,0 +1,68 @@
+{
+    "data": [
+        {
+            "heading": "featured",
+            "cards": [
+                {
+                    "bannerText": "lcs",
+                    "bannerBgUrl": "https://static-cdn.jtvnw.net/jtv_user_pictures/fc191188-fa5a-4e1b-9375-397e6b928d14-profile_banner-480.jpeg",
+                    "logoUrl": "https://static-cdn.jtvnw.net/jtv_user_pictures/c0e0a865-d09f-4cc9-8cbf-8cd56036bf87-profile_image-150x150.png",
+                    "title": "LCS",
+                    "date": "Fri, 6:00 PM - 11:00 PM",
+                    "rsvp": "6",
+                    "bgColor": "#6066FA"
+                },
+                {
+                    "bannerText": "challengersleague",
+                    "bannerBgUrl": "https://static-cdn.jtvnw.net/jtv_user_pictures/4dde023b-00af-4440-8a5a-d443ccc4e3f0-profile_banner-480.jpeg",
+                    "logoUrl": "https://static-cdn.jtvnw.net/jtv_user_pictures/665d8f3a-c4b7-4f46-a0f8-279c91550c02-profile_image-150x150.png",
+                    "title": "Academy Playoffs",
+                    "date": "Thu, 7:00 PM - 11:00 PM",
+                    "rsvp": "5",
+                    "bgColor": "#9147FF"
+                },
+                {
+                    "bannerText": "lvpes",
+                    "bannerBgUrl": "https://static-cdn.jtvnw.net/jtv_user_pictures/lvpes-profile_banner-f1ede1ec0232b40e-480.jpeg",
+                    "logoUrl": "https://static-cdn.jtvnw.net/jtv_user_pictures/lvpes-profile_image-b9a288b926641fe4-150x150.png",
+                    "title": "Superliga LoL Verano",
+                    "date": "Thu, 11:30 AM - 5:30 PM",
+                    "rsvp": "1",
+                    "bgColor": "#E31818"
+                }
+            ]
+        },
+        {
+            "heading": "THU Jan 12",
+            "cards": [
+                {
+                    "bannerText": "lcs",
+                    "bannerBgUrl": "https://static-cdn.jtvnw.net/jtv_user_pictures/fc191188-fa5a-4e1b-9375-397e6b928d14-profile_banner-480.jpeg",
+                    "logoUrl": "https://static-cdn.jtvnw.net/jtv_user_pictures/c0e0a865-d09f-4cc9-8cbf-8cd56036bf87-profile_image-150x150.png",
+                    "title": "LCS",
+                    "date": "Fri, 6:00 PM - 11:00 PM",
+                    "rsvp": "6",
+                    "bgColor": "#6066FA"
+                },
+                {
+                    "bannerText": "challengersleague",
+                    "bannerBgUrl": "https://static-cdn.jtvnw.net/jtv_user_pictures/4dde023b-00af-4440-8a5a-d443ccc4e3f0-profile_banner-480.jpeg",
+                    "logoUrl": "https://static-cdn.jtvnw.net/jtv_user_pictures/665d8f3a-c4b7-4f46-a0f8-279c91550c02-profile_image-150x150.png",
+                    "title": "Academy Playoffs",
+                    "date": "Thu, 7:00 PM - 11:00 PM",
+                    "rsvp": "5",
+                    "bgColor": "#9147FF"
+                },
+                {
+                    "bannerText": "lvpes",
+                    "bannerBgUrl": "https://static-cdn.jtvnw.net/jtv_user_pictures/lvpes-profile_banner-f1ede1ec0232b40e-480.jpeg",
+                    "logoUrl": "https://static-cdn.jtvnw.net/jtv_user_pictures/lvpes-profile_image-b9a288b926641fe4-150x150.png",
+                    "title": "Superliga LoL Verano",
+                    "date": "Thu, 11:30 AM - 5:30 PM",
+                    "rsvp": "1",
+                    "bgColor": "#E31818"
+                }
+            ]
+        }
+    ]
+}

@@ -6,6 +6,7 @@ import Modal from '../../../components/organisms/Modal';
 import { generateHexCode } from '../../../utils/functions';
 import StreamCard from '../../../components/molecules/StreamCard';
 import UpcomingSection from '../../../components/organisms/UpcomingSection';
+import upcomingData from '../../../assets/data/upcoming-cards.json';
 
 const PAGES = ['Live Channels', 'Upcoming', 'Videos', 'Clips'];
 
@@ -211,7 +212,12 @@ const GameDetails = () => {
                         );
                     })}
 
-                {selectedTab === 'Upcoming' && <UpcomingSection />}
+                {selectedTab === 'Upcoming' &&
+                    upcomingData.data.map((sectionData, idx) => (
+                        <React.Fragment key={idx}>
+                            <UpcomingSection data={sectionData} />
+                        </React.Fragment>
+                    ))}
 
                 {selectedTab === 'Videos' &&
                     topVideosList.videos.map((videosData) => {
