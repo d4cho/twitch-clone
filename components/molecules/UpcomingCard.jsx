@@ -5,8 +5,10 @@ import { BsCheck, BsSuitHeart, BsSuitHeartFill } from 'react-icons/bs';
 import styles from '../../styles/UpcomingCard.module.css';
 import HoverableIcon from '../atoms/HoverableIcon';
 import { FaHeartBroken } from 'react-icons/fa';
+import { useAppContext } from '../../context/AppContext';
 
 const UpcomingCard = ({ cardData }) => {
+    const { alertList, setAlertList } = useAppContext();
     const { bannerText, bannerBgUrl, logoUrl, title, date, rsvp, bgColor } =
         cardData;
 
@@ -14,6 +16,21 @@ const UpcomingCard = ({ cardData }) => {
     const [isFollowing, setIsFollowing] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const [isNotify, setIsNotify] = useState(true);
+
+    const handleRemindClick = () => {
+        let newAlertList = [...alertList];
+
+        if (isReminder) {
+            newAlertList.unshift('Reminder removed successfully!');
+            setAlertList(newAlertList);
+        } else {
+            newAlertList.unshift(
+                "You'll be notified at 7:00 PM on 1/12 when challengersleague goes live."
+            );
+            setAlertList(newAlertList);
+        }
+        setIsReminder(!isReminder);
+    };
 
     return (
         <div className={styles.container} style={{ '--bgColor': bgColor }}>
@@ -37,7 +54,7 @@ const UpcomingCard = ({ cardData }) => {
                 <div className={styles.buttons_wrapper}>
                     <button
                         className={styles.remind_btn}
-                        onClick={() => setIsReminder(!isReminder)}
+                        onClick={handleRemindClick}
                     >
                         <div className={styles.btn_icon}>
                             {isReminder ? (

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { BsCheckCircleFill } from 'react-icons/bs';
+import { useAppContext } from '../../context/AppContext';
 import styles from '../../styles/SnackbarAlert.module.css';
 
 const SnackbarAlert = ({ text, idx }) => {
+    const { alertList, setAlertList } = useAppContext();
     const [showAlert, setShowAlert] = useState(false);
 
     useEffect(() => {
@@ -13,7 +15,7 @@ const SnackbarAlert = ({ text, idx }) => {
         }, 5000);
     }, []);
 
-    const translateYEnter = idx * -100;
+    const translateYEnter = idx * -125 - 50; // 125 adds 25% between alerts, 50 adds 50% to bottom alert
 
     return (
         <div
