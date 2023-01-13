@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { FiMoreVertical } from 'react-icons/fi';
 import { BsBell, BsBellFill, BsBellSlash } from 'react-icons/bs';
 import { BsCheck, BsSuitHeart, BsSuitHeartFill } from 'react-icons/bs';
@@ -17,18 +17,32 @@ const UpcomingCard = ({ cardData }) => {
     const [isHovered, setIsHovered] = useState(false);
     const [isNotify, setIsNotify] = useState(true);
 
+    let timer = useRef();
+
     const handleRemindClick = () => {
+        clearTimeout(timer.current);
+
         let newAlertList = [...alertList];
+
+        if (newAlertList.length >= 4) {
+            newAlertList.pop();
+        }
 
         if (isReminder) {
             newAlertList.unshift('Reminder removed successfully!');
             setAlertList(newAlertList);
         } else {
             newAlertList.unshift(
-                "You'll be notified at 7:00 PM on 1/12 when challengersleague goes live."
+                "You'll be notified at 7:00 PM on 1/12 when this channel goes live."
             );
             setAlertList(newAlertList);
         }
+
+        // FIFO alert after 5s
+        timer.current = setTimeout(() => {
+            setAlertList([]);
+        }, 5500);
+
         setIsReminder(!isReminder);
     };
 
