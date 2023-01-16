@@ -51,7 +51,6 @@ export default function Home({
     leagueOfLegendsStreams,
     warzoneStreams,
 }) {
-    console.log(topStreams, topGames, leagueOfLegendsStreams);
     return (
         <div className={styles.container}>
             <Head>

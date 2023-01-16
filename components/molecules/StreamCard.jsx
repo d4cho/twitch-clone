@@ -21,8 +21,6 @@ const StreamCard = ({ cardData, bgColor, type }) => {
         duration,
     } = cardData;
 
-    console.log(cardData);
-
     const sizeAdjustedThumbnailUrl = thumbnail_url
         .replace('{width}', '440')
         .replace('{height}', '248');
