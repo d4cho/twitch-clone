@@ -6,8 +6,12 @@ import HoverableText from '../atoms/HoverableText';
 import Chip from '../atoms/Chip';
 import { nFormatter } from '../../utils/functions';
 import ProfileIcon from '../atoms/ProfileIcon';
+import { useRouter } from 'next/router';
+import { useAppContext } from '../../context/AppContext';
 
 const StreamCard = ({ cardData, bgColor, type }) => {
+    const router = useRouter();
+    const { setUserChannelPageData } = useAppContext();
     const {
         user_id,
         broadcaster_id,
@@ -35,8 +39,14 @@ const StreamCard = ({ cardData, bgColor, type }) => {
             });
     }, []);
 
+    const handleCardClick = () => {
+        setUserChannelPageData(cardData);
+
+        router.push(`/${user_name}`);
+    };
+
     return (
-        <div className={styles.container}>
+        <div className={styles.container} onClick={handleCardClick}>
             <div className={styles.wrapper}>
                 <div
                     className={styles.animation_wrapper}

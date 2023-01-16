@@ -9,9 +9,18 @@ export const AppContextProvider = ({ children }) => {
 
     const [alertList, setAlertList] = useState([]);
 
+    const [userChannelPageData, setUserChannelPageData] = useState({});
+
     return (
         <AppContext.Provider
-            value={{ theme, setTheme, alertList, setAlertList }}
+            value={{
+                theme,
+                setTheme,
+                alertList,
+                setAlertList,
+                userChannelPageData,
+                setUserChannelPageData,
+            }}
         >
             {children}
         </AppContext.Provider>
