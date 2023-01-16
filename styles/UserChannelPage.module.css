@@ -9,10 +9,6 @@
     display: flex;
 }
 
-.container div {
-    /* border: 1px solid aquamarine; */
-}
-
 .content_wrapper {
     width: 100%;
 }
@@ -81,7 +77,6 @@
 .game_name:hover {
     color: var(--color-purple-hover);
     border-bottom: 1px solid var(--color-purple-hover);
-    /* margin-bottom: -1px; */
 }
 
 .tags_wrapper {
