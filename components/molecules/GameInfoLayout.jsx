@@ -3,8 +3,7 @@ import styles from '../../styles/GameInfoLayout.module.css';
 import Chip from '../atoms/Chip';
 import HoverableText from '../atoms/HoverableText';
 import { FiChevronDown } from 'react-icons/fi';
-import { BsSuitHeart, BsSuitHeartFill } from 'react-icons/bs';
-import { FaHeartBroken } from 'react-icons/fa';
+import FollowButton from '../atoms/FollowButton';
 
 const CHIPS = ['RPG', 'MOBA', 'Action', 'Strategy'];
 
@@ -92,38 +91,7 @@ const GameInfoLayout = ({
                     )}
                 </div>
                 <div className={styles.button_container}>
-                    <button
-                        className={[
-                            styles.follow_button,
-                            isFollowing ? styles.following : styles.follow,
-                        ].join(' ')}
-                        onClick={() => setIsFollowing(!isFollowing)}
-                        onMouseEnter={() => setIsHovered(true)}
-                        onMouseLeave={() => setIsHovered(false)}
-                    >
-                        <div className={styles.follow_button_item}>
-                            {isHovered ? (
-                                isFollowing ? (
-                                    <FaHeartBroken size={20} />
-                                ) : (
-                                    <BsSuitHeartFill size={20} />
-                                )
-                            ) : isFollowing ? (
-                                <BsSuitHeartFill size={16} />
-                            ) : (
-                                <BsSuitHeart size={16} />
-                            )}
-                        </div>
-                        <div className={styles.follow_button_item}>
-                            {isHovered
-                                ? isFollowing
-                                    ? 'Unfollow'
-                                    : 'Follow'
-                                : isFollowing
-                                ? 'Following'
-                                : 'Follow'}
-                        </div>
-                    </button>
+                    <FollowButton />
                 </div>
             </div>
         </div>

@@ -3,10 +3,17 @@ import styles from '../styles/UserChannelPage.module.css';
 import ProfileIcon from '../components/atoms/ProfileIcon';
 import { useAppContext } from '../context/AppContext';
 import Chip from '../components/atoms/Chip';
+import FollowButton from '../components/atoms/FollowButton';
+import HoverableIcon from '../components/atoms/HoverableIcon';
+import { AiOutlineStar } from 'react-icons/ai';
+import { RxPerson } from 'react-icons/rx';
+import { FiShare, FiMoreVertical } from 'react-icons/fi';
+import { numberWithCommas } from '../utils/functions';
 
 const UserChannelPage = () => {
     const { userChannelPageData } = useAppContext();
     const {
+        broadcaster_id,
         game_name,
         started_at,
         tags,
@@ -24,7 +31,9 @@ const UserChannelPage = () => {
         fetch(`http://localhost:3000/user/${user_id || broadcaster_id}`)
             .then((res) => res.json())
             .then((data) => {
-                setAvatarUrl(data.data[0]['profile_image_url']);
+                if (data) {
+                    setAvatarUrl(data?.data[0]['profile_image_url']);
+                }
             });
     }, []);
 
@@ -48,20 +57,44 @@ const UserChannelPage = () => {
                                 <div className={styles.game_name}>
                                     {game_name}
                                 </div>
-                                {tags.map((tag, idx) => {
-                                    return (
-                                        <div key={idx}>
-                                            <Chip
-                                                chipText={tag}
-                                                styleOverride={{ margin: 0 }}
-                                            />
-                                        </div>
-                                    );
-                                })}
+                                {tags &&
+                                    tags.map((tag, idx) => {
+                                        return (
+                                            <div key={idx}>
+                                                <Chip
+                                                    chipText={tag}
+                                                    styleOverride={{
+                                                        margin: 0,
+                                                    }}
+                                                />
+                                            </div>
+                                        );
+                                    })}
                             </div>
                         </div>
                     </div>
-                    <div>buttons go here</div>
+                    <div className={styles.right_wrapper}>
+                        <div className={styles.buttons_wrapper}>
+                            <FollowButton />
+                            <button className={styles.subscribe}>
+                                <AiOutlineStar size={20} /> Subscribe
+                            </button>
+                        </div>
+                        <div className={styles.viewers}>
+                            <RxPerson size={20} />
+                            {numberWithCommas(viewer_count)}
+                        </div>
+                        <div className={styles.icons_wrapper}>
+                            <HoverableIcon
+                                icon={<FiShare size={20} />}
+                                toolTipText={'Share'}
+                                toolTipPosition={'bottom'}
+                            />
+                            <HoverableIcon
+                                icon={<FiMoreVertical size={20} />}
+                            />
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className={styles.chat_wrapper}>chat</div>

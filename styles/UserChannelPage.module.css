@@ -87,6 +87,44 @@
     column-gap: 10px;
 }
 
+.right_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    row-gap: 5px;
+}
+
+.buttons_wrapper {
+    display: flex;
+    column-gap: 10px;
+}
+
+.subscribe {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.viewers {
+    font-size: 16px;
+    color: #ff8280;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+    font-weight: bold;
+}
+
+.icons_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+}
+
 .chat_wrapper {
     min-width: 340px;
 }
