@@ -7,17 +7,18 @@ import Chip from '../atoms/Chip';
 import { nFormatter } from '../../utils/functions';
 import ProfileIcon from '../atoms/ProfileIcon';
 import { useRouter } from 'next/router';
-import { useAppContext } from '../../context/AppContext';
+// import { useAppContext } from '../../context/AppContext';
 
 const StreamCard = ({ cardData, bgColor, type }) => {
     const router = useRouter();
-    const { setUserChannelPageData } = useAppContext();
+    // const { setUserChannelPageData } = useAppContext();
     const {
         user_id,
         broadcaster_id,
         title,
         thumbnail_url,
         user_name,
+        user_login,
         game_name,
         viewer_count,
         view_count,
@@ -40,9 +41,9 @@ const StreamCard = ({ cardData, bgColor, type }) => {
     }, []);
 
     const handleCardClick = () => {
-        setUserChannelPageData(cardData);
+        // setUserChannelPageData(cardData);
 
-        router.push(`/${user_name}`);
+        router.push(`/${user_login}`);
     };
 
     return (

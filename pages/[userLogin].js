@@ -9,33 +9,47 @@ import { AiOutlineStar } from 'react-icons/ai';
 import { RxPerson } from 'react-icons/rx';
 import { FiShare, FiMoreVertical } from 'react-icons/fi';
 import { numberWithCommas } from '../utils/functions';
+import ChatBox from '../components/organisms/ChatBox';
+import { useRouter } from 'next/router';
 
 const UserChannelPage = () => {
-    const { userChannelPageData } = useAppContext();
+    const router = useRouter();
+    const { userChannelPageData, setUserChannelPageData } = useAppContext();
     const {
         broadcaster_id,
         game_name,
-        started_at,
         tags,
         title,
         user_id,
+        user_login,
         user_name,
         viewer_count,
     } = userChannelPageData;
 
     const [avatarUrl, setAvatarUrl] = useState('');
 
-    console.log(userChannelPageData);
-
     useEffect(() => {
-        fetch(`http://localhost:3000/user/${user_id || broadcaster_id}`)
-            .then((res) => res.json())
-            .then((data) => {
-                if (data) {
-                    setAvatarUrl(data?.data[0]['profile_image_url']);
-                }
-            });
-    }, []);
+        if (user_login !== router.query.userLogin) {
+            fetch(
+                `http://localhost:3000/top-streams/user/${router.query.userLogin}`
+            )
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.status !== 400) {
+                        setUserChannelPageData(data.data[0]);
+                    }
+                });
+            // .catch(alert('api fail'));
+        }
+
+        if (user_id || broadcaster_id) {
+            fetch(`http://localhost:3000/user/${user_id || broadcaster_id}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    setAvatarUrl(data.data[0]['profile_image_url']);
+                });
+        }
+    }, [router.query.userLogin, userChannelPageData]);
 
     return (
         <div className={styles.container}>
@@ -82,7 +96,7 @@ const UserChannelPage = () => {
                         </div>
                         <div className={styles.viewers}>
                             <RxPerson size={20} />
-                            {numberWithCommas(viewer_count)}
+                            {viewer_count && numberWithCommas(viewer_count)}
                         </div>
                         <div className={styles.icons_wrapper}>
                             <HoverableIcon
@@ -97,7 +111,8 @@ const UserChannelPage = () => {
                     </div>
                 </div>
             </div>
-            <div className={styles.chat_wrapper}>chat</div>
+
+            <ChatBox channelName={user_name} />
         </div>
     );
 };
