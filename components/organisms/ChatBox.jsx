@@ -15,9 +15,10 @@ response_type=token
 &redirect_uri=https://twitchapps.com/tmi/&scope=chat:read+chat:edit+channel:moderate+whispers:read+whispers:edit+channel_editor+channel:read:redemptions+user:read:email
 */
 
-const ChatBox = ({ channelName }) => {
+const ChatBox = ({ channelName, isShowChat, setIsShowChat }) => {
     const myRef = useRef();
     const [chats, setChats] = useState([]);
+    const [myChatMessage, setMyChatMessage] = useState('');
 
     useEffect(() => {
         if (channelName) {
@@ -51,18 +52,31 @@ const ChatBox = ({ channelName }) => {
         };
     };
 
+    const handleChange = (e) => {
+        e.preventDefault();
+        setMyChatMessage(e.target.value);
+    };
+
     const handleChatClick = () => {
-        ComfyJS.Say('hello');
+        ComfyJS.Say(myChatMessage);
+        setMyChatMessage('');
     };
 
     return (
-        <div className={styles.container}>
+        <div
+            className={styles.container}
+            style={{
+                display: isShowChat ? 'flex' : 'none',
+            }}
+        >
             <div className={styles.chats_top}>
-                <HoverableIcon
-                    icon={<BsArrowBarRight size={20} />}
-                    toolTipText={'Collapse'}
-                    toolTipPosition={'right'}
-                />
+                <div onClick={() => setIsShowChat(false)}>
+                    <HoverableIcon
+                        icon={<BsArrowBarRight size={20} />}
+                        toolTipText={'Collapse'}
+                        toolTipPosition={'right'}
+                    />
+                </div>
                 <div className={styles.title}>Stream Chat</div>
                 <HoverableIcon
                     icon={<RiGroupLine size={20} />}
@@ -89,6 +103,9 @@ const ChatBox = ({ channelName }) => {
                     className={styles.text_input}
                     type='text'
                     placeholder='Send a message'
+                    value={myChatMessage}
+                    onChange={(e) => handleChange(e)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleChatClick()}
                 />
                 <div className={styles.buttons_wrapper}>
                     <div style={{ marginRight: '10px' }}>

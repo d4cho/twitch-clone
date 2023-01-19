@@ -20,6 +20,13 @@
     position: relative;
 }
 
+.expand_chat_icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+}
+
 .video {
     width: 100%;
     height: 100%;

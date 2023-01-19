@@ -11,6 +11,7 @@ import { FiShare, FiMoreVertical } from 'react-icons/fi';
 import { numberWithCommas } from '../utils/functions';
 import ChatBox from '../components/organisms/ChatBox';
 import { useRouter } from 'next/router';
+import { BsArrowBarLeft } from 'react-icons/bs';
 
 const UserChannelPage = () => {
     const router = useRouter();
@@ -27,6 +28,7 @@ const UserChannelPage = () => {
     } = userChannelPageData;
 
     const [avatarUrl, setAvatarUrl] = useState('');
+    const [isShowChat, setIsShowChat] = useState(true);
 
     useEffect(() => {
         if (user_login !== router.query.userLogin) {
@@ -55,6 +57,18 @@ const UserChannelPage = () => {
         <div className={styles.container}>
             <div className={styles.content_wrapper}>
                 <div className={styles.video_wrapper}>
+                    {!isShowChat && (
+                        <div
+                            className={styles.expand_chat_icon}
+                            onClick={() => setIsShowChat(true)}
+                        >
+                            <HoverableIcon
+                                icon={<BsArrowBarLeft size={20} />}
+                                toolTipText={'Expand'}
+                                toolTipPosition={'left'}
+                            />
+                        </div>
+                    )}
                     <video className={styles.video} controls>
                         <source src="your_video's_name.mp4" type='video/mp4' />
                     </video>
@@ -112,7 +126,11 @@ const UserChannelPage = () => {
                 </div>
             </div>
 
-            <ChatBox channelName={user_name} />
+            <ChatBox
+                channelName={user_name}
+                isShowChat={isShowChat}
+                setIsShowChat={setIsShowChat}
+            />
         </div>
     );
 };
