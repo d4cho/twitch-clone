@@ -5,6 +5,7 @@ import HoverableIcon from '../atoms/HoverableIcon';
 import { BsArrowBarRight } from 'react-icons/bs';
 import { RiGroupLine } from 'react-icons/ri';
 import { IoIosSettings } from 'react-icons/io';
+import { processMessage } from '../../utils/processMessage';
 
 /*
 *** use this link to generate chat token ***
@@ -22,24 +23,28 @@ const ChatBox = ({ channelName, isShowChat, setIsShowChat }) => {
 
     useEffect(() => {
         if (channelName) {
-            ComfyJS.Init(channelName);
-            handleChats();
-
             ComfyJS.Init(
                 process.env.NEXT_PUBLIC_TWITCHUSER,
-                process.env.NEXT_PUBLIC_OAUTH
+                process.env.NEXT_PUBLIC_OAUTH,
+                channelName
             );
+            handleChats();
         }
     }, [channelName]);
 
     const handleChats = () => {
         ComfyJS.onChat = (user, message, flags, self, extra) => {
+            let processedMessage = processMessage(message, extra.messageEmotes);
+
             setChats((prevState) => {
                 return [
                     ...prevState,
                     {
                         user,
                         message,
+                        processedMessage,
+                        color: extra.userColor,
+                        emotes: extra.messageEmotes,
                     },
                 ];
             });
@@ -58,7 +63,7 @@ const ChatBox = ({ channelName, isShowChat, setIsShowChat }) => {
     };
 
     const handleChatClick = () => {
-        ComfyJS.Say(myChatMessage);
+        ComfyJS.Say(myChatMessage, channelName);
         setMyChatMessage('');
     };
 
@@ -85,7 +90,7 @@ const ChatBox = ({ channelName, isShowChat, setIsShowChat }) => {
                 />
             </div>
             <div className={styles.chats_wrapper}>
-                {chats.map((message, idx) => {
+                {chats.map((chat, idx) => {
                     let last = idx === chats.length - 1;
 
                     return (
@@ -94,7 +99,47 @@ const ChatBox = ({ channelName, isShowChat, setIsShowChat }) => {
                             key={idx}
                             className={styles.chat}
                             style={{ paddingBottom: last ? '10px' : '5px' }}
-                        >{`${message.user}: ${message.message}`}</div>
+                        >
+                            <span
+                                className={styles.chat_username}
+                                style={{ color: chat.color || '#ACB3E1' }}
+                            >
+                                {chat.user}:&nbsp;
+                            </span>
+
+                            {chat.processedMessage ? (
+                                <span className={styles.chat_emote_message}>
+                                    {chat.processedMessage.map((msg, idx) => {
+                                        if (msg.type === 'emote') {
+                                            return (
+                                                <div key={idx}>
+                                                    <img
+                                                        alt='emote'
+                                                        src={msg.value}
+                                                    />
+                                                </div>
+                                            );
+                                        } else {
+                                            return (
+                                                <div
+                                                    className={
+                                                        styles.chat_message
+                                                    }
+                                                    key={idx}
+                                                >
+                                                    &nbsp;
+                                                    {msg.value}
+                                                </div>
+                                            );
+                                        }
+                                    })}
+                                </span>
+                            ) : (
+                                <span className={styles.chat_only_message}>
+                                    {chat.message}
+                                </span>
+                            )}
+                        </div>
                     );
                 })}
             </div>

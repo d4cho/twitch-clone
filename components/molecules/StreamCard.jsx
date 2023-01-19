@@ -15,6 +15,7 @@ const StreamCard = ({ cardData, bgColor, type }) => {
     const {
         user_id,
         broadcaster_id,
+        broadcaster_name,
         title,
         thumbnail_url,
         user_name,
@@ -24,6 +25,7 @@ const StreamCard = ({ cardData, bgColor, type }) => {
         view_count,
         tags,
         duration,
+        id,
     } = cardData;
 
     const sizeAdjustedThumbnailUrl = thumbnail_url
@@ -43,7 +45,13 @@ const StreamCard = ({ cardData, bgColor, type }) => {
     const handleCardClick = () => {
         // setUserChannelPageData(cardData);
 
-        router.push(`/${user_login}`);
+        console.log(cardData);
+
+        if (user_login) {
+            router.push(`/${user_login}`);
+        } else {
+            router.push(`/${broadcaster_name}`);
+        }
     };
 
     return (

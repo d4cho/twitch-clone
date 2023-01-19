@@ -25,7 +25,7 @@ const UserChannelPage = () => {
         user_login,
         user_name,
         viewer_count,
-    } = userChannelPageData;
+    } = { ...userChannelPageData };
 
     const [avatarUrl, setAvatarUrl] = useState('');
     const [isShowChat, setIsShowChat] = useState(true);
@@ -70,7 +70,7 @@ const UserChannelPage = () => {
                         </div>
                     )}
                     <video className={styles.video} controls>
-                        <source src="your_video's_name.mp4" type='video/mp4' />
+                        <source src='video_url' type='video/mp4' />
                     </video>
                 </div>
                 <div className={styles.bottom_wrapper}>
