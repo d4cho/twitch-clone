@@ -21,41 +21,6 @@ const Carousel = ({ liveStreamData }) => {
         setActiveSlide(idx);
     };
 
-    const test = [
-        {
-            num: 1,
-            color: 'red',
-        },
-        {
-            num: 2,
-            color: 'orange',
-        },
-        {
-            num: 3,
-            color: 'yellow',
-        },
-        {
-            num: 4,
-            color: 'green',
-        },
-        {
-            num: 5,
-            color: 'blue',
-        },
-        {
-            num: 6,
-            color: 'indigo',
-        },
-        {
-            num: 7,
-            color: 'violet',
-        },
-        {
-            num: 8,
-            color: 'aqua',
-        },
-    ];
-
     return (
         <div className={styles.container}>
             <button

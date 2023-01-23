@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react';
 import styles from '../../styles/CarouselCard.module.css';
 import { nFormatter } from '../../utils/functions';
@@ -6,6 +7,7 @@ import HoverableText from '../atoms/HoverableText';
 import ProfileIcon from '../atoms/ProfileIcon';
 
 const CarouselCard = ({ streamInfo, isActiveSlide }) => {
+    const router = useRouter();
     const { user_id, user_name, game_name, viewer_count, tags } = streamInfo;
 
     const [avatarUrl, setAvatarUrl] = useState('');
@@ -42,6 +44,9 @@ const CarouselCard = ({ streamInfo, isActiveSlide }) => {
                                     initialColor={'#bf94ff'}
                                     hoverColor={'#a970ff'}
                                     hoverEffects={{ changeColor: true }}
+                                    handleOnClick={() => {
+                                        router.push(`/${user_name}`);
+                                    }}
                                 />
                             </div>
                             <div>
@@ -52,6 +57,11 @@ const CarouselCard = ({ streamInfo, isActiveSlide }) => {
                                     initialColor={'#bf94ff'}
                                     hoverColor={'#a970ff'}
                                     hoverEffects={{ changeColor: true }}
+                                    handleOnClick={() => {
+                                        router.push(
+                                            `/directory/game/${game_name}`
+                                        );
+                                    }}
                                 />
                             </div>
                             <div>{nFormatter(viewer_count, 1)} viewers</div>
