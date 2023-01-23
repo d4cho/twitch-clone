@@ -35,7 +35,7 @@ const StreamCard = ({ cardData, bgColor, type }) => {
     const [avatarUrl, setAvatarUrl] = useState('');
 
     useEffect(() => {
-        fetch(`http://localhost:3000/user/${user_id || broadcaster_id}`)
+        fetch(`http://localhost:3001/api/user/${user_id || broadcaster_id}`)
             .then((res) => res.json())
             .then((data) => {
                 setAvatarUrl(data.data[0]['profile_image_url']);
