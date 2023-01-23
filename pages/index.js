@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css';
 import categoryData from '../assets/data/channel-categories.json';
 import NavBar from '../components/organisms/NavBar';
 import Carousel from '../components/organisms/Carousel';
+import { useRouter } from 'next/router';
 // import liveStreamsData from '../assets/data/live-streams.json';
 
 // export const getStaticPaths = async () => {
@@ -51,6 +52,8 @@ export default function Home({
     leagueOfLegendsStreams,
     warzoneStreams,
 }) {
+    const router = useRouter();
+
     return (
         <div className={styles.container}>
             <Head>
@@ -87,7 +90,11 @@ export default function Home({
                                     }}
                                     initialColor={'#bf94ff'}
                                     hoverColor={'#a970ff'}
-                                    handleOnClick={() => {}}
+                                    handleOnClick={() => {
+                                        router.push(
+                                            `/directory/game/league of legends`
+                                        );
+                                    }}
                                 />
                                 <div
                                     className={styles.pad_left}
@@ -117,7 +124,11 @@ export default function Home({
                                     }}
                                     initialColor={'#bf94ff'}
                                     hoverColor={'#a970ff'}
-                                    handleOnClick={() => {}}
+                                    handleOnClick={() => {
+                                        router.push(
+                                            `/directory/game/call of duty: warzone`
+                                        );
+                                    }}
                                 />
                                 <div
                                     className={styles.pad_left}
@@ -144,7 +155,9 @@ export default function Home({
                                     }}
                                     initialColor={'#bf94ff'}
                                     hoverColor={'#a970ff'}
-                                    handleOnClick={() => {}}
+                                    handleOnClick={() => {
+                                        router.push(`/directory`);
+                                    }}
                                 />
                                 <div
                                     className={styles.pad_left}
