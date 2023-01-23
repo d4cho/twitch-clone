@@ -27,13 +27,13 @@ import { useRouter } from 'next/router';
 // };
 
 export const getStaticProps = async (context) => {
-    const res1 = await fetch(`http://localhost:3001/api/top-streams`);
+    const res1 = await fetch(`http://localhost:3000/api/top-streams`);
     const topStreams = await res1.json();
-    const res2 = await fetch(`http://localhost:3001/api/top-games`);
+    const res2 = await fetch(`http://localhost:3000/api/top-games`);
     const topGames = await res2.json();
-    const res3 = await fetch(`http://localhost:3001/api/top-streams/21779`); // league of legends
+    const res3 = await fetch(`http://localhost:3000/api/top-streams/21779`); // league of legends
     const leagueOfLegendsStreams = await res3.json();
-    const res4 = await fetch(`http://localhost:3001/api/top-streams/512710`); // warzone
+    const res4 = await fetch(`http://localhost:3000/api/top-streams/512710`); // warzone
     const warzoneStreams = await res4.json();
 
     return {

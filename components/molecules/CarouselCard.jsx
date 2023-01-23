@@ -13,7 +13,7 @@ const CarouselCard = ({ streamInfo, isActiveSlide }) => {
     const [avatarUrl, setAvatarUrl] = useState('');
 
     useEffect(() => {
-        fetch(`http://localhost:3001/api/user/${user_id}`)
+        fetch(`http://localhost:3000/api/user/${user_id}`)
             .then((res) => res.json())
             .then((data) => {
                 setAvatarUrl(data.data[0]['profile_image_url']);

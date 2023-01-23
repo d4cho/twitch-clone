@@ -6,9 +6,9 @@ import styles from '../../styles/Directory.module.css';
 import { generateHexCode } from '../../utils/functions';
 
 export const getStaticProps = async (context) => {
-    const res1 = await fetch(`http://localhost:3001/api/top-streams`);
+    const res1 = await fetch(`http://localhost:3000/api/top-streams`);
     const topStreams = await res1.json();
-    const res2 = await fetch(`http://localhost:3001/api/top-games`);
+    const res2 = await fetch(`http://localhost:3000/api/top-games`);
     const topGames = await res2.json();
 
     return {
@@ -61,7 +61,7 @@ const Directory = ({ topStreams, topGames }) => {
 
     const callMoreGamesApi = async () => {
         const res = await fetch(
-            `http://localhost:3001/api/top-games/more/${topGamesList.cursor}`
+            `http://localhost:3000/api/top-games/more/${topGamesList.cursor}`
         );
         const data = await res.json();
 
@@ -73,7 +73,7 @@ const Directory = ({ topStreams, topGames }) => {
 
     const callMoreStreamsApi = async () => {
         const res = await fetch(
-            `http://localhost:3001/api/top-streams/more?cursor=${topStreamsList.cursor}`
+            `http://localhost:3000/api/top-streams/more?cursor=${topStreamsList.cursor}`
         );
         const data = await res.json();
 

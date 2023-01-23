@@ -33,7 +33,7 @@ const UserChannelPage = () => {
     useEffect(() => {
         if (user_login !== router.query.userLogin) {
             fetch(
-                `http://localhost:3001/api/top-streams/user/${router.query.userLogin}`
+                `http://localhost:3000/api/top-streams/user/${router.query.userLogin}`
             )
                 .then((res) => res.json())
                 .then((data) => {
@@ -45,7 +45,7 @@ const UserChannelPage = () => {
         }
 
         if (user_id || broadcaster_id) {
-            fetch(`http://localhost:3001/api/user/${user_id || broadcaster_id}`)
+            fetch(`http://localhost:3000/api/user/${user_id || broadcaster_id}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setAvatarUrl(data.data[0]['profile_image_url']);
