@@ -90,6 +90,19 @@ export default function Home({
     //     return null;
     // }
 
+    if (
+        !topStreams ||
+        !topGames ||
+        !leagueOfLegendsStreams ||
+        !warzoneStreams
+    ) {
+        return (
+            <div className={styles.container}>
+                <h1>Loading...</h1>
+            </div>
+        );
+    }
+
     return (
         <div className={styles.container}>
             <Head>

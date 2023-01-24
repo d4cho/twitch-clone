@@ -128,6 +128,14 @@ const Directory = ({ topStreams, topGames }) => {
     //     return null;
     // }
 
+    if (!topStreams || !topGames) {
+        return (
+            <div className={styles.container}>
+                <h1>Loading...</h1>
+            </div>
+        );
+    }
+
     return (
         <div className={styles.container} onScroll={(e) => handleScroll(e)}>
             <h1 className={styles.title}>Browse</h1>
