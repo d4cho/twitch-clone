@@ -7,20 +7,28 @@ import { generateHexCode } from '../../utils/functions';
 import { server } from '../../config';
 
 export const getStaticProps = async (context) => {
-    const res1 = await fetch(`${server}/api/top-streams`);
-    const topStreams = await res1.json();
-    const res2 = await fetch(`${server}/api/top-games`);
-    const topGames = await res2.json();
+    try {
+        const res1 = await fetch(`${server}/api/top-streams`);
+        const topStreams = await res1.json();
+        const res2 = await fetch(`${server}/api/top-games`);
+        const topGames = await res2.json();
 
-    return {
-        props: {
-            topStreams: topStreams,
-            topGames: topGames,
-        },
-    };
+        return {
+            props: {
+                topStreams: topStreams,
+                topGames: topGames,
+            },
+        };
+    } catch (err) {
+        return {
+            props: {
+                error: err.message,
+            },
+        };
+    }
 };
 
-const Directory = ({ topStreams, topGames }) => {
+const Directory = ({ topStreams, topGames, error }) => {
     const [selectedCategory, setSelectedCategory] = useState('categories');
     const [topGamesList, setTopGamesList] = useState({
         // games: [...topGames.data],
@@ -92,7 +100,7 @@ const Directory = ({ topStreams, topGames }) => {
         });
     };
 
-    if (!topStreams || !topGames) {
+    if (error || !topStreams || !topGames) {
         return (
             <div className={styles.container}>
                 <h1>Loading...</h1>
