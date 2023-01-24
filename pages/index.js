@@ -7,57 +7,98 @@ import NavBar from '../components/organisms/NavBar';
 import Carousel from '../components/organisms/Carousel';
 import { useRouter } from 'next/router';
 import { server } from '../config';
+import useSWR from 'swr';
 
-export const getStaticProps = async (context) => {
-    try {
-        const res1 = await fetch(`${server}/api/top-streams`);
-        const topStreams = await res1.json();
-        const res2 = await fetch(`${server}/api/top-games`);
-        const topGames = await res2.json();
-        const res3 = await fetch(`${server}/api/top-streams/21779`); // league of legends
-        const leagueOfLegendsStreams = await res3.json();
-        const res4 = await fetch(`${server}/api/top-streams/512710`); // warzone
-        const warzoneStreams = await res4.json();
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
-        return {
-            props: {
-                topStreams: topStreams,
-                topGames: topGames,
-                leagueOfLegendsStreams: leagueOfLegendsStreams,
-                warzoneStreams,
-            },
-        };
-    } catch (err) {
-        return {
-            props: {
-                error: err.message,
-            },
-        };
+// export const getStaticProps = async (context) => {
+//     try {
+//         const res1 = await fetch(`${server}/api/top-streams`);
+//         const topStreams = await res1.json();
+//         const res2 = await fetch(`${server}/api/top-games`);
+//         const topGames = await res2.json();
+//         const res3 = await fetch(`${server}/api/top-streams/21779`); // league of legends
+//         const leagueOfLegendsStreams = await res3.json();
+//         const res4 = await fetch(`${server}/api/top-streams/512710`); // warzone
+//         const warzoneStreams = await res4.json();
+
+//         return {
+//             props: {
+//                 topStreams: topStreams,
+//                 topGames: topGames,
+//                 leagueOfLegendsStreams: leagueOfLegendsStreams,
+//                 warzoneStreams,
+//             },
+//         };
+//     } catch (err) {
+//         return {
+//             props: {
+//                 error: err.message,
+//             },
+//         };
+//     }
+// };
+
+export default function Home(
+    {
+        // topStreams,
+        // topGames,
+        // leagueOfLegendsStreams,
+        // warzoneStreams,
+        // error,
     }
-};
-
-export default function Home({
-    topStreams,
-    topGames,
-    leagueOfLegendsStreams,
-    warzoneStreams,
-    error,
-}) {
+) {
     const router = useRouter();
 
+    const {
+        data: topStreams,
+        error: topStreamsError,
+        isLoading,
+    } = useSWR('/api/top-streams', fetcher);
+    const { data: topGames, error: topGamesError } = useSWR(
+        '/api/top-games',
+        fetcher
+    );
+    const { data: leagueOfLegendsStreams, error: leagueOfLegendsStreamsError } =
+        useSWR('/api/top-streams/21779', fetcher);
+    const { data: warzoneStreams, error: warzoneStreamsError } = useSWR(
+        '/api/top-streams/512710',
+        fetcher
+    );
+
     if (
-        error ||
-        !topStreams ||
-        !topGames ||
-        !leagueOfLegendsStreams ||
-        !warzoneStreams
-    ) {
+        topStreamsError ||
+        topGamesError ||
+        leagueOfLegendsStreamsError ||
+        warzoneStreamsError
+    )
+        return (
+            <div className={styles.container}>
+                <h1>Failed to load</h1>
+            </div>
+        );
+    if (isLoading)
         return (
             <div className={styles.container}>
                 <h1>Loading...</h1>
             </div>
         );
-    }
+    if (!topStreams || !topGames || !leagueOfLegendsStreams || !warzoneStreams)
+        return null;
+
+    // if (
+    //     error ||
+    //     !topStreams ||
+    //     !topGames ||
+    //     !leagueOfLegendsStreams ||
+    //     !warzoneStreams
+    // ) {
+    //     return (
+    //         <div className={styles.container}>
+    //             <h1>Loading...</h1>
+    //         </div>
+    //     );
+    // }
 
     return (
         <div className={styles.container}>
