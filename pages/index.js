@@ -176,12 +176,9 @@ export default function Home({
                 </section>
                 <section>
                     <HomeDisplaySection
-                        contentData={
-                            topStreams &&
-                            topStreams.data.sort(
-                                (a, b) => b.viewer_count - a.viewer_count
-                            )
-                        }
+                        contentData={topStreams?.data.sort(
+                            (a, b) => b.viewer_count - a.viewer_count
+                        )}
                         perLine={3}
                         type={'stream'}
                         headerText={
