@@ -6,7 +6,7 @@ import categoryData from '../assets/data/channel-categories.json';
 import NavBar from '../components/organisms/NavBar';
 import Carousel from '../components/organisms/Carousel';
 import { useRouter } from 'next/router';
-import { server } from '../config';
+// import { server } from '../config';
 import useSWR from 'swr';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());

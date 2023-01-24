@@ -5,30 +5,47 @@ import NavBar from '../../components/organisms/NavBar';
 import styles from '../../styles/Directory.module.css';
 import { generateHexCode } from '../../utils/functions';
 import { server } from '../../config';
+import useSWR from 'swr';
 
-export const getStaticProps = async (context) => {
-    try {
-        const res1 = await fetch(`${server}/api/top-streams`);
-        const topStreams = await res1.json();
-        const res2 = await fetch(`${server}/api/top-games`);
-        const topGames = await res2.json();
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
-        return {
-            props: {
-                topStreams: topStreams,
-                topGames: topGames,
-            },
-        };
-    } catch (err) {
-        return {
-            props: {
-                error: err.message,
-            },
-        };
+// export const getStaticProps = async (context) => {
+//     try {
+//         const res1 = await fetch(`${server}/api/top-streams`);
+//         const topStreams = await res1.json();
+//         const res2 = await fetch(`${server}/api/top-games`);
+//         const topGames = await res2.json();
+
+//         return {
+//             props: {
+//                 topStreams: topStreams,
+//                 topGames: topGames,
+//             },
+//         };
+//     } catch (err) {
+//         return {
+//             props: {
+//                 error: err.message,
+//             },
+//         };
+//     }
+// };
+
+const Directory = (
+    {
+        // topStreams, topGames, error
     }
-};
+) => {
+    const {
+        data: topStreams,
+        error: topStreamsError,
+        isLoading,
+    } = useSWR('/api/top-streams', fetcher);
+    const { data: topGames, error: topGamesError } = useSWR(
+        '/api/top-games',
+        fetcher
+    );
 
-const Directory = ({ topStreams, topGames, error }) => {
     const [selectedCategory, setSelectedCategory] = useState('categories');
     const [topGamesList, setTopGamesList] = useState({
         // games: [...topGames.data],
@@ -100,13 +117,27 @@ const Directory = ({ topStreams, topGames, error }) => {
         });
     };
 
-    if (error || !topStreams || !topGames) {
+    if (topStreamsError || topGamesError)
+        return (
+            <div className={styles.container}>
+                <h1>Failed to load</h1>
+            </div>
+        );
+    if (isLoading)
         return (
             <div className={styles.container}>
                 <h1>Loading...</h1>
             </div>
         );
-    }
+    if (!topStreams || !topGames) return null;
+
+    // if (error || !topStreams || !topGames) {
+    //     return (
+    //         <div className={styles.container}>
+    //             <h1>Loading...</h1>
+    //         </div>
+    //     );
+    // }
 
     return (
         <div className={styles.container} onScroll={(e) => handleScroll(e)}>
