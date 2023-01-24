@@ -45,16 +45,16 @@ const Directory = ({ topStreams, topGames }) => {
 
     const [selectedCategory, setSelectedCategory] = useState('categories');
     const [topGamesList, setTopGamesList] = useState({
-        games: [...topGames.data],
-        cursor: topGames.pagination.cursor,
-        // games: [],
-        // cursor: '',
+        // games: [...topGames.data],
+        // cursor: topGames.pagination.cursor,
+        games: [],
+        cursor: '',
     });
     const [topStreamsList, setTopStreamsList] = useState({
-        streams: [...topStreams.data],
-        cursor: topStreams.pagination.cursor,
-        // streams: [],
-        // cursor: '',
+        // streams: [...topStreams.data],
+        // cursor: topStreams.pagination.cursor,
+        streams: [],
+        cursor: '',
     });
 
     // to reset lists
