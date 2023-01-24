@@ -12,6 +12,7 @@ import { numberWithCommas } from '../utils/functions';
 import ChatBox from '../components/organisms/ChatBox';
 import { useRouter } from 'next/router';
 import { BsArrowBarLeft } from 'react-icons/bs';
+import { server } from '../config';
 
 const UserChannelPage = () => {
     const router = useRouter();
@@ -32,9 +33,7 @@ const UserChannelPage = () => {
 
     useEffect(() => {
         if (user_login !== router.query.userLogin) {
-            fetch(
-                `http://localhost:3000/api/top-streams/user/${router.query.userLogin}`
-            )
+            fetch(`${server}/api/top-streams/user/${router.query.userLogin}`)
                 .then((res) => res.json())
                 .then((data) => {
                     if (data.status !== 400) {
@@ -45,7 +44,7 @@ const UserChannelPage = () => {
         }
 
         if (user_id || broadcaster_id) {
-            fetch(`http://localhost:3000/api/user/${user_id || broadcaster_id}`)
+            fetch(`${server}/api/user/${user_id || broadcaster_id}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setAvatarUrl(data.data[0]['profile_image_url']);

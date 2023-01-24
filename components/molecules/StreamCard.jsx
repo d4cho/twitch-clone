@@ -7,11 +7,20 @@ import Chip from '../atoms/Chip';
 import { nFormatter } from '../../utils/functions';
 import ProfileIcon from '../atoms/ProfileIcon';
 import { useRouter } from 'next/router';
-// import { useAppContext } from '../../context/AppContext';
+import useSWR from 'swr';
+
+const fetcher = async (url) => {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (res.status !== 200) {
+        throw new Error(data.message);
+    }
+    return data;
+};
 
 const StreamCard = ({ cardData, bgColor, type }) => {
     const router = useRouter();
-    // const { setUserChannelPageData } = useAppContext();
     const {
         user_id,
         broadcaster_id,
@@ -32,15 +41,34 @@ const StreamCard = ({ cardData, bgColor, type }) => {
         .replace('{width}', '440')
         .replace('{height}', '248');
 
-    const [avatarUrl, setAvatarUrl] = useState('');
+    // const [avatarUrl, setAvatarUrl] = useState('');
 
-    useEffect(() => {
-        fetch(`http://localhost:3000/api/user/${user_id || broadcaster_id}`)
-            .then((res) => res.json())
-            .then((data) => {
-                setAvatarUrl(data.data[0]['profile_image_url']);
-            });
-    }, []);
+    // useEffect(() => {
+    //     fetch(`http://localhost:3000/api/user/${user_id || broadcaster_id}`)
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             setAvatarUrl(data.data[0]['profile_image_url']);
+    //         });
+    // }, []);
+
+    const { data, error, isLoading } = useSWR(
+        `/api/user/${user_id || broadcaster_id}`,
+        fetcher
+    );
+
+    if (error) {
+        return <div className={styles.container}>Failed to load</div>;
+    }
+    if (isLoading) {
+        return (
+            <div className={styles.container}>
+                <h1>Loading...</h1>
+            </div>
+        );
+    }
+    if (!data) {
+        return null;
+    }
 
     const handleCardClick = () => {
         if (user_login) {
@@ -88,7 +116,9 @@ const StreamCard = ({ cardData, bgColor, type }) => {
 
                 <div className={styles.info_wrapper}>
                     <div className={styles.avatar}>
-                        <ProfileIcon imageUrl={avatarUrl} />
+                        <ProfileIcon
+                            imageUrl={data.data[0]['profile_image_url']}
+                        />
                     </div>
                     <div className={styles.info}>
                         <div className={styles.title}>

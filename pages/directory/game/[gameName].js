@@ -7,6 +7,7 @@ import { generateHexCode } from '../../../utils/functions';
 import StreamCard from '../../../components/molecules/StreamCard';
 import UpcomingSection from '../../../components/organisms/UpcomingSection';
 import upcomingData from '../../../assets/data/upcoming-cards.json';
+import { server } from '../../../config';
 
 const PAGES = ['Live Channels', 'Upcoming', 'Videos', 'Clips'];
 
@@ -34,7 +35,7 @@ const GameDetails = () => {
     useEffect(() => {
         if (gameName) {
             // game info api
-            fetch(`http://localhost:3000/api/game-info/${gameName}`)
+            fetch(`${server}/api/game-info/${gameName}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setGameInfo(data.data[0]);
@@ -57,7 +58,7 @@ const GameDetails = () => {
     const callGetApi = (gameId) => {
         switch (selectedTab) {
             case 'Live Channels':
-                fetch(`http://localhost:3000/api/top-streams/${gameId}`)
+                fetch(`${server}/api/top-streams/${gameId}`)
                     .then((res) => res.json())
                     .then((data) =>
                         setTopStreamsList({
@@ -68,7 +69,7 @@ const GameDetails = () => {
                 break;
 
             case 'Videos':
-                fetch(`http://localhost:3000/api/get-videos/${gameId}`)
+                fetch(`${server}/api/get-videos/${gameId}`)
                     .then((res) => res.json())
                     .then((data) =>
                         setTopVideosList({
@@ -79,7 +80,7 @@ const GameDetails = () => {
                 break;
 
             case 'Clips':
-                fetch(`http://localhost:3000/api/get-clips/${gameId}`)
+                fetch(`${server}/api/get-clips/${gameId}`)
                     .then((res) => res.json())
                     .then((data) =>
                         setTopClipsList({
@@ -98,7 +99,7 @@ const GameDetails = () => {
         switch (selectedTab) {
             case 'Live Channels':
                 const res = await fetch(
-                    `http://localhost:3000/api/top-streams/more?gameId=${gameInfo.id}&cursor=${topStreamsList.cursor}`
+                    `${server}/api/top-streams/more?gameId=${gameInfo.id}&cursor=${topStreamsList.cursor}`
                 );
                 const data = await res.json();
 
@@ -110,7 +111,7 @@ const GameDetails = () => {
 
             case 'Videos':
                 const res1 = await fetch(
-                    `http://localhost:3000/api/get-videos/more?gameId=${gameInfo.id}&cursor=${topVideosList.cursor}`
+                    `${server}/api/get-videos/more?gameId=${gameInfo.id}&cursor=${topVideosList.cursor}`
                 );
                 const data1 = await res1.json();
 
@@ -122,7 +123,7 @@ const GameDetails = () => {
 
             case 'Clips':
                 const res2 = await fetch(
-                    `http://localhost:3000/api/get-clips/more?gameId=${gameInfo.id}&cursor=${topClipsList.cursor}`
+                    `${server}/api/get-clips/more?gameId=${gameInfo.id}&cursor=${topClipsList.cursor}`
                 );
                 const data2 = await res2.json();
 

@@ -6,53 +6,90 @@ import categoryData from '../assets/data/channel-categories.json';
 import NavBar from '../components/organisms/NavBar';
 import Carousel from '../components/organisms/Carousel';
 import { useRouter } from 'next/router';
-// import liveStreamsData from '../assets/data/live-streams.json';
+import useSWR from 'swr';
 
-// export const getStaticPaths = async () => {
-//     const res = await fetch('https://jsonplaceholder.typicode.com/users');
-//     const data = await res.json();
-
-//     const paths = data.map((user) => {
-//         return {
-//             params: {
-//                 id: user.id.toString(),
-//             },
-//         };
-//     });
+// export const getStaticProps = async (context) => {
+//     const res1 = await fetch(`http://localhost:3000/api/top-streams`);
+//     const topStreams = await res1.json();
+//     const res2 = await fetch(`http://localhost:3000/api/top-games`);
+//     const topGames = await res2.json();
+//     const res3 = await fetch(`http://localhost:3000/api/top-streams/21779`); // league of legends
+//     const leagueOfLegendsStreams = await res3.json();
+//     const res4 = await fetch(`http://localhost:3000/api/top-streams/512710`); // warzone
+//     const warzoneStreams = await res4.json();
 
 //     return {
-//         paths: paths,
-//         fallback: false,
+//         props: {
+//             topStreams: topStreams,
+//             topGames: topGames,
+//             leagueOfLegendsStreams: leagueOfLegendsStreams,
+//             warzoneStreams,
+//         },
 //     };
 // };
 
-export const getStaticProps = async (context) => {
-    const res1 = await fetch(`http://localhost:3000/api/top-streams`);
-    const topStreams = await res1.json();
-    const res2 = await fetch(`http://localhost:3000/api/top-games`);
-    const topGames = await res2.json();
-    const res3 = await fetch(`http://localhost:3000/api/top-streams/21779`); // league of legends
-    const leagueOfLegendsStreams = await res3.json();
-    const res4 = await fetch(`http://localhost:3000/api/top-streams/512710`); // warzone
-    const warzoneStreams = await res4.json();
+const fetcher = async (url) => {
+    const res = await fetch(url);
+    const data = await res.json();
 
-    return {
-        props: {
-            topStreams: topStreams,
-            topGames: topGames,
-            leagueOfLegendsStreams: leagueOfLegendsStreams,
-            warzoneStreams,
-        },
-    };
+    if (res.status !== 200) {
+        throw new Error(data.message);
+    }
+    return data;
 };
 
-export default function Home({
-    topStreams,
-    topGames,
-    leagueOfLegendsStreams,
-    warzoneStreams,
-}) {
+export default function Home(
+    {
+        // topStreams,
+        // topGames,
+        // leagueOfLegendsStreams,
+        // warzoneStreams,
+    }
+) {
     const router = useRouter();
+
+    const {
+        data: topStreams,
+        error: topStreamsError,
+        isLoading,
+    } = useSWR('/api/top-streams', fetcher);
+
+    const { data: topGames, error: topGamesError } = useSWR(
+        '/api/top-games',
+        fetcher
+    );
+
+    const { data: leagueOfLegendsStreams, error: leagueOfLegendsStreamsError } =
+        useSWR('/api/top-streams/21779', fetcher);
+
+    const { data: warzoneStreams, error: warzoneStreamsError } = useSWR(
+        '/api/top-streams/512710',
+        fetcher
+    );
+
+    if (
+        topStreamsError ||
+        topGamesError ||
+        leagueOfLegendsStreamsError ||
+        warzoneStreamsError
+    ) {
+        return <div className={styles.container}>Failed to load</div>;
+    }
+    if (isLoading) {
+        return (
+            <div className={styles.container}>
+                <h1>Loading...</h1>
+            </div>
+        );
+    }
+    if (
+        !topStreams ||
+        !topGames ||
+        !leagueOfLegendsStreams ||
+        !warzoneStreams
+    ) {
+        return null;
+    }
 
     return (
         <div className={styles.container}>

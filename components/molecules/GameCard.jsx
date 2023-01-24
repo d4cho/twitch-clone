@@ -11,9 +11,9 @@ const GameCard = ({ cardData, bgColor }) => {
     const router = useRouter();
 
     const { name, box_art_url, id: gameId, tags } = cardData;
-    const sizeAdjustedBoxArtUrl = box_art_url
-        .replace('{width}', '176')
-        .replace('{height}', '234');
+    const sizeAdjustedBoxArtUrl =
+        box_art_url &&
+        box_art_url.replace('{width}', '176').replace('{height}', '234');
 
     const [viewerCount, setViewerCount] = useState(0);
 
