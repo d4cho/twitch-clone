@@ -6,17 +6,6 @@ import Chip from '../atoms/Chip';
 import HoverableText from '../atoms/HoverableText';
 import ProfileIcon from '../atoms/ProfileIcon';
 import { server } from '../../config';
-// import useSWR from 'swr';
-
-// const fetcher = async (url) => {
-//     const res = await fetch(url);
-//     const data = await res.json();
-
-//     if (res.status !== 200) {
-//         throw new Error(data.message);
-//     }
-//     return data;
-// };
 
 const CarouselCard = ({ streamInfo, isActiveSlide }) => {
     const router = useRouter();
@@ -32,26 +21,6 @@ const CarouselCard = ({ streamInfo, isActiveSlide }) => {
             });
     }, []);
 
-    // const {
-    //     data: userData,
-    //     error: userDataError,
-    //     isLoading,
-    // } = useSWR(`/api/user/${user_id}`, fetcher);
-
-    // if (userDataError) {
-    //     return <div className={styles.container}>Failed to load</div>;
-    // }
-    // if (isLoading) {
-    //     return (
-    //         <div className={styles.container}>
-    //             <h1>Loading...</h1>
-    //         </div>
-    //     );
-    // }
-    // if (!userData) {
-    //     return null;
-    // }
-
     return (
         <div
             className={[styles.container, isActiveSlide && styles.grid].join(
@@ -66,11 +35,7 @@ const CarouselCard = ({ streamInfo, isActiveSlide }) => {
             {isActiveSlide && (
                 <div className={styles.right}>
                     <div className={styles.info_wrapper}>
-                        <ProfileIcon
-                            imageUrl={avatarUrl}
-                            // imageUrl={userData.data[0]['profile_image_url']}
-                            size={50}
-                        />
+                        <ProfileIcon imageUrl={avatarUrl} size={50} />
                         <div className={styles.info}>
                             <div>
                                 <HoverableText

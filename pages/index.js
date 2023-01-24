@@ -7,7 +7,6 @@ import NavBar from '../components/organisms/NavBar';
 import Carousel from '../components/organisms/Carousel';
 import { useRouter } from 'next/router';
 import { server } from '../config';
-// import useSWR from 'swr';
 
 export const getStaticProps = async (context) => {
     const res1 = await fetch(`${server}/api/top-streams`);
@@ -29,16 +28,6 @@ export const getStaticProps = async (context) => {
     };
 };
 
-// const fetcher = async (url) => {
-//     const res = await fetch(url);
-//     const data = await res.json();
-
-//     if (res.status !== 200) {
-//         throw new Error(data.message);
-//     }
-//     return data;
-// };
-
 export default function Home({
     topStreams,
     topGames,
@@ -46,49 +35,6 @@ export default function Home({
     warzoneStreams,
 }) {
     const router = useRouter();
-
-    // const {
-    //     data: topStreams,
-    //     error: topStreamsError,
-    //     isLoading,
-    // } = useSWR('/api/top-streams', fetcher);
-
-    // const { data: topGames, error: topGamesError } = useSWR(
-    //     '/api/top-games',
-    //     fetcher
-    // );
-
-    // const { data: leagueOfLegendsStreams, error: leagueOfLegendsStreamsError } =
-    //     useSWR('/api/top-streams/21779', fetcher);
-
-    // const { data: warzoneStreams, error: warzoneStreamsError } = useSWR(
-    //     '/api/top-streams/512710',
-    //     fetcher
-    // );
-
-    // if (
-    //     topStreamsError ||
-    //     topGamesError ||
-    //     leagueOfLegendsStreamsError ||
-    //     warzoneStreamsError
-    // ) {
-    //     return <div className={styles.container}>Failed to load</div>;
-    // }
-    // if (isLoading) {
-    //     return (
-    //         <div className={styles.container}>
-    //             <h1>Loading...</h1>
-    //         </div>
-    //     );
-    // }
-    // if (
-    //     !topStreams ||
-    //     !topGames ||
-    //     !leagueOfLegendsStreams ||
-    //     !warzoneStreams
-    // ) {
-    //     return null;
-    // }
 
     if (
         !topStreams ||

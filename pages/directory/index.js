@@ -4,7 +4,6 @@ import StreamCard from '../../components/molecules/StreamCard';
 import NavBar from '../../components/organisms/NavBar';
 import styles from '../../styles/Directory.module.css';
 import { generateHexCode } from '../../utils/functions';
-// import useSWR from 'swr';
 import { server } from '../../config';
 
 export const getStaticProps = async (context) => {
@@ -21,28 +20,7 @@ export const getStaticProps = async (context) => {
     };
 };
 
-// const fetcher = async (url) => {
-//     const res = await fetch(url);
-//     const data = await res.json();
-
-//     if (res.status !== 200) {
-//         throw new Error(data.message);
-//     }
-//     return data;
-// };
-
 const Directory = ({ topStreams, topGames }) => {
-    // const {
-    //     data: topStreams,
-    //     error: topStreamsError,
-    //     isLoading,
-    // } = useSWR('/api/top-streams', fetcher);
-
-    // const { data: topGames, error: topGamesError } = useSWR(
-    //     '/api/top-games',
-    //     fetcher
-    // );
-
     const [selectedCategory, setSelectedCategory] = useState('categories');
     const [topGamesList, setTopGamesList] = useState({
         // games: [...topGames.data],
@@ -113,20 +91,6 @@ const Directory = ({ topStreams, topGames }) => {
             cursor: data.pagination.cursor,
         });
     };
-
-    // if (topStreamsError || topGamesError) {
-    //     return <div className={styles.container}>Failed to load</div>;
-    // }
-    // if (isLoading) {
-    //     return (
-    //         <div className={styles.container}>
-    //             <h1>Loading...</h1>
-    //         </div>
-    //     );
-    // }
-    // if (!topStreams || !topGames) {
-    //     return null;
-    // }
 
     if (!topStreams || !topGames) {
         return (

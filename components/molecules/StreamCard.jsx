@@ -8,17 +8,6 @@ import { nFormatter } from '../../utils/functions';
 import ProfileIcon from '../atoms/ProfileIcon';
 import { useRouter } from 'next/router';
 import { server } from '../../config';
-// import useSWR from 'swr';
-
-// const fetcher = async (url) => {
-//     const res = await fetch(url);
-//     const data = await res.json();
-
-//     if (res.status !== 200) {
-//         throw new Error(data.message);
-//     }
-//     return data;
-// };
 
 const StreamCard = ({ cardData, bgColor, type }) => {
     const router = useRouter();
@@ -51,25 +40,6 @@ const StreamCard = ({ cardData, bgColor, type }) => {
                 setAvatarUrl(data.data[0]['profile_image_url']);
             });
     }, []);
-
-    // const { data, error, isLoading } = useSWR(
-    //     `/api/user/${user_id || broadcaster_id}`,
-    //     fetcher
-    // );
-
-    // if (error) {
-    //     return <div className={styles.container}>Failed to load</div>;
-    // }
-    // if (isLoading) {
-    //     return (
-    //         <div className={styles.container}>
-    //             <h1>Loading...</h1>
-    //         </div>
-    //     );
-    // }
-    // if (!data) {
-    //     return null;
-    // }
 
     const handleCardClick = () => {
         if (user_login) {
@@ -117,10 +87,7 @@ const StreamCard = ({ cardData, bgColor, type }) => {
 
                 <div className={styles.info_wrapper}>
                     <div className={styles.avatar}>
-                        <ProfileIcon
-                            imageUrl={avatarUrl}
-                            // imageUrl={data.data[0]['profile_image_url']}
-                        />
+                        <ProfileIcon imageUrl={avatarUrl} />
                     </div>
                     <div className={styles.info}>
                         <div className={styles.title}>
