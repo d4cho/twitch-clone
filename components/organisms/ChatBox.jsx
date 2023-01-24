@@ -36,8 +36,6 @@ const ChatBox = ({ channelName, isShowChat, setIsShowChat }) => {
         ComfyJS.onChat = (user, message, flags, self, extra) => {
             let processedMessage = processMessage(message, extra.messageEmotes);
 
-            console.log(extra);
-
             setChats((prevState) => {
                 return [
                     ...prevState,

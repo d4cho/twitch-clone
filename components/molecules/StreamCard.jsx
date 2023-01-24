@@ -43,10 +43,6 @@ const StreamCard = ({ cardData, bgColor, type }) => {
     }, []);
 
     const handleCardClick = () => {
-        // setUserChannelPageData(cardData);
-
-        console.log(cardData);
-
         if (user_login) {
             router.push(`/${user_login}`);
         } else {
