@@ -29,62 +29,63 @@ const Carousel = ({ liveStreamData }) => {
             >
                 <HoverableIcon icon={<FiChevronLeft size={25} />} />
             </button>
-            {liveStreamData.map((streamInfo, idx) => {
-                let active;
-                let next;
-                let next2;
-                let next3;
-                let prev;
-                let prev2;
-                let prev3;
+            {liveStreamData &&
+                liveStreamData.map((streamInfo, idx) => {
+                    let active;
+                    let next;
+                    let next2;
+                    let next3;
+                    let prev;
+                    let prev2;
+                    let prev3;
 
-                if (idx === activeSlide) active = true;
-                if (idx === (activeSlide + 1) % 8) next = true;
-                if (idx === (activeSlide + 2) % 8) next2 = true;
-                if (idx === (activeSlide + 3) % 8) next3 = true;
-                if (idx === (8 + activeSlide - 1) % 8) prev = true;
-                if (idx === (8 + activeSlide - 2) % 8) prev2 = true;
-                if (idx === (8 + activeSlide - 3) % 8) prev3 = true;
+                    if (idx === activeSlide) active = true;
+                    if (idx === (activeSlide + 1) % 8) next = true;
+                    if (idx === (activeSlide + 2) % 8) next2 = true;
+                    if (idx === (activeSlide + 3) % 8) next3 = true;
+                    if (idx === (8 + activeSlide - 1) % 8) prev = true;
+                    if (idx === (8 + activeSlide - 2) % 8) prev2 = true;
+                    if (idx === (8 + activeSlide - 3) % 8) prev3 = true;
 
-                return (
-                    <div
-                        key={idx}
-                        className={[
-                            styles.slide,
-                            active && styles.active_slide,
-                            next && styles.next_slide,
-                            next2 && styles.next2_slide,
-                            next3 && styles.next3_slide,
-                            prev && styles.prev_slide,
-                            prev2 && styles.prev2_slide,
-                            prev3 && styles.prev3_slide,
-                            !(
-                                active ||
-                                next ||
-                                next2 ||
-                                next3 ||
-                                prev ||
-                                prev2 ||
-                                prev3
-                            ) && styles.hide_slide,
-                        ].join(' ')}
-                        // style={{ backgroundColor: item.color }}
-                        onClick={() => handleSlideClick(idx)}
-                    >
+                    return (
                         <div
+                            key={idx}
                             className={[
-                                styles.slide_cover,
-                                !active && styles.opaque_cover,
+                                styles.slide,
+                                active && styles.active_slide,
+                                next && styles.next_slide,
+                                next2 && styles.next2_slide,
+                                next3 && styles.next3_slide,
+                                prev && styles.prev_slide,
+                                prev2 && styles.prev2_slide,
+                                prev3 && styles.prev3_slide,
+                                !(
+                                    active ||
+                                    next ||
+                                    next2 ||
+                                    next3 ||
+                                    prev ||
+                                    prev2 ||
+                                    prev3
+                                ) && styles.hide_slide,
                             ].join(' ')}
+                            // style={{ backgroundColor: item.color }}
+                            onClick={() => handleSlideClick(idx)}
                         >
-                            <CarouselCard
-                                streamInfo={streamInfo}
-                                isActiveSlide={active}
-                            />
+                            <div
+                                className={[
+                                    styles.slide_cover,
+                                    !active && styles.opaque_cover,
+                                ].join(' ')}
+                            >
+                                <CarouselCard
+                                    streamInfo={streamInfo}
+                                    isActiveSlide={active}
+                                />
+                            </div>
                         </div>
-                    </div>
-                );
-            })}
+                    );
+                })}
             <button
                 className={[styles.button, styles.button_next].join(' ')}
                 onClick={handleNextClick}
