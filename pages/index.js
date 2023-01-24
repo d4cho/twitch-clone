@@ -9,31 +9,23 @@ import { useRouter } from 'next/router';
 import { server } from '../config';
 
 export const getStaticProps = async (context) => {
-    try {
-        const res1 = await fetch(`${server}/api/top-streams`);
-        const topStreams = await res1.json();
-        const res2 = await fetch(`${server}/api/top-games`);
-        const topGames = await res2.json();
-        const res3 = await fetch(`${server}/api/top-streams/21779`); // league of legends
-        const leagueOfLegendsStreams = await res3.json();
-        const res4 = await fetch(`${server}/api/top-streams/512710`); // warzone
-        const warzoneStreams = await res4.json();
+    const res1 = await fetch(`${server}/api/top-streams`);
+    const topStreams = await res1.json();
+    const res2 = await fetch(`${server}/api/top-games`);
+    const topGames = await res2.json();
+    const res3 = await fetch(`${server}/api/top-streams/21779`); // league of legends
+    const leagueOfLegendsStreams = await res3.json();
+    const res4 = await fetch(`${server}/api/top-streams/512710`); // warzone
+    const warzoneStreams = await res4.json();
 
-        return {
-            props: {
-                topStreams: topStreams,
-                topGames: topGames,
-                leagueOfLegendsStreams: leagueOfLegendsStreams,
-                warzoneStreams,
-            },
-        };
-    } catch (error) {
-        return {
-            props: {
-                error,
-            },
-        };
-    }
+    return {
+        props: {
+            topStreams: topStreams,
+            topGames: topGames,
+            leagueOfLegendsStreams: leagueOfLegendsStreams,
+            warzoneStreams,
+        },
+    };
 };
 
 export default function Home({
@@ -41,12 +33,10 @@ export default function Home({
     topGames,
     leagueOfLegendsStreams,
     warzoneStreams,
-    error,
 }) {
     const router = useRouter();
 
     if (
-        error ||
         !topStreams ||
         !topGames ||
         !leagueOfLegendsStreams ||
