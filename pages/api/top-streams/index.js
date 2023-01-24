@@ -1,5 +1,5 @@
-const TWITCH_CLIENT_ID = process.env.NEXT_PUBLIC_TWITCH_CLIENT_ID;
-const TWITCH_SECRET = process.env.NEXT_PUBLIC_TWITCH_SECRET;
+const TWITCH_CLIENT_ID = '8ij3s1z5tiw8faqjr3er9ktadm8m8g';
+const TWITCH_SECRET = '8t20nsg5ijudin9kaqvg3v0aehydsb';
 
 // get token
 const getToken = async () => {
