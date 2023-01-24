@@ -5,51 +5,52 @@ import { nFormatter } from '../../utils/functions';
 import Chip from '../atoms/Chip';
 import HoverableText from '../atoms/HoverableText';
 import ProfileIcon from '../atoms/ProfileIcon';
-import useSWR from 'swr';
+import { server } from '../../config';
+// import useSWR from 'swr';
 
-const fetcher = async (url) => {
-    const res = await fetch(url);
-    const data = await res.json();
+// const fetcher = async (url) => {
+//     const res = await fetch(url);
+//     const data = await res.json();
 
-    if (res.status !== 200) {
-        throw new Error(data.message);
-    }
-    return data;
-};
+//     if (res.status !== 200) {
+//         throw new Error(data.message);
+//     }
+//     return data;
+// };
 
 const CarouselCard = ({ streamInfo, isActiveSlide }) => {
     const router = useRouter();
     const { user_id, user_name, game_name, viewer_count, tags } = streamInfo;
 
-    // const [avatarUrl, setAvatarUrl] = useState('');
+    const [avatarUrl, setAvatarUrl] = useState('');
 
-    // useEffect(() => {
-    //     fetch(`http://localhost:3000/api/user/${user_id}`)
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             setAvatarUrl(data.data[0]['profile_image_url']);
-    //         });
-    // }, []);
+    useEffect(() => {
+        fetch(`${server}/api/user/${user_id}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setAvatarUrl(data.data[0]['profile_image_url']);
+            });
+    }, []);
 
-    const {
-        data: userData,
-        error: userDataError,
-        isLoading,
-    } = useSWR(`/api/user/${user_id}`, fetcher);
+    // const {
+    //     data: userData,
+    //     error: userDataError,
+    //     isLoading,
+    // } = useSWR(`/api/user/${user_id}`, fetcher);
 
-    if (userDataError) {
-        return <div className={styles.container}>Failed to load</div>;
-    }
-    if (isLoading) {
-        return (
-            <div className={styles.container}>
-                <h1>Loading...</h1>
-            </div>
-        );
-    }
-    if (!userData) {
-        return null;
-    }
+    // if (userDataError) {
+    //     return <div className={styles.container}>Failed to load</div>;
+    // }
+    // if (isLoading) {
+    //     return (
+    //         <div className={styles.container}>
+    //             <h1>Loading...</h1>
+    //         </div>
+    //     );
+    // }
+    // if (!userData) {
+    //     return null;
+    // }
 
     return (
         <div
@@ -66,7 +67,8 @@ const CarouselCard = ({ streamInfo, isActiveSlide }) => {
                 <div className={styles.right}>
                     <div className={styles.info_wrapper}>
                         <ProfileIcon
-                            imageUrl={userData.data[0]['profile_image_url']}
+                            imageUrl={avatarUrl}
+                            // imageUrl={userData.data[0]['profile_image_url']}
                             size={50}
                         />
                         <div className={styles.info}>
