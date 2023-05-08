@@ -61,7 +61,7 @@ const TopBar = () => {
                     <input
                         style={{ width: 300 }}
                         type='text'
-                        placeholder='get component from someone'
+                        placeholder='search'
                     />
                 </div>
                 <div className={styles.right}>
